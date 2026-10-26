@@ -1,0 +1,11 @@
+field,value,background,text
+*,Yes,#e8f5ee,#23613b
+*,Partially / with concerns,#fff6dd,#7a5a00
+*,Partially,#fff6dd,#7a5a00
+*,With concerns,#fff6dd,#7a5a00
+*,No,#fdecec,#9b2c2c
+*,Unable to judge,#eef2f6,#475467
+*,Uncertain,#eef2f6,#475467
+status,Retained,#e8f5ee,#23613b
+status,Under review,#fff6dd,#7a5a00
+status,Identified,#edf4ff,#285ea8
