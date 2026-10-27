@@ -7,5 +7,6 @@ field,value,background,text
 *,Unable to judge,#eef2f6,#475467
 *,Uncertain,#eef2f6,#475467
 status,Retained,#e8f5ee,#23613b
-status,Under review,#fff6dd,#7a5a00
+status,Added for COS consideration,#fff6dd,#7a5a00
 status,Identified,#edf4ff,#285ea8
+status,Removed from COS consideration,#fdecec,#9b2c2c

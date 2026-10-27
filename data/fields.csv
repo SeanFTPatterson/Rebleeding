@@ -10,6 +10,5 @@ review-link,Review link,No,Yes,No,No,70,url,View review
 description,Description,No,Yes,No,No,80,longtext,
 description_reference,Description Reference(s),No,Yes,No,No,100,longtext,
 plain-language_description,Plain-language description,No,No,No,No,90,longtext,
-full-version-of-measure,Full version of measure,No,No,No,No,110,url,View instrument resource
 image,Instrument image,No,Yes,No,No,150,image,
 image_alt,Image alternative text,No,No,No,No,160,hidden,
