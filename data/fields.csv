@@ -2,9 +2,9 @@ field,label,table,popup,filter,search,display_order,format,link_text
 id,Instrument ID,No,No,No,No,10,hidden,
 name,Instrument,Yes,Yes,No,Yes,20,primary,
 acronym,Acronym,No,No,No,Yes,30,text,
-domain,Core domain,Yes,Yes,No,Yes,40,text,
+domain,Core domain,No,Yes,No,Yes,40,text,
 domain-definition,Domain definition,No,Yes,No,No,45,url,View definition
-status,Instrument selection status,No,Yes,No,Yes,50,badge,
+status,Instrument selection status,Yes,Yes,Yes,Yes,50,badge,
 identified-from,Identified in,No,Yes,No,No,60,text,
 review-link,Review link,No,Yes,No,No,70,url,View review
 description,Description,No,Yes,No,No,80,longtext,
