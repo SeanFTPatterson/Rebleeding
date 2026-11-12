@@ -93,6 +93,72 @@
   .empty{padding:30px;text-align:center;color:var(--muted)}
   @media(max-width:950px){.side-nav{display:none}}
   @media(max-width:700px){h1{font-size:28px}.meta{align-items:flex-start;flex-direction:column}.detail-grid{grid-template-columns:1fr}.detail-grid dt{margin-top:10px}.team-logo{width:78px;height:78px}.modal-logo{width:68px;height:68px}.modal-head{padding:14px}.modal-head-actions{gap:4px}.copy-link{padding:7px 8px;font-size:11px}.modal-navigation{grid-template-columns:1fr 1.5fr 1fr;padding:10px 10px;gap:7px}.modal-navigation .btn{min-width:0;padding:9px 7px;font-size:12px}.record-position{font-size:11px}.record-jump{font-size:12px;padding:7px 8px}.keyboard-hints{display:none}.viewed-marker{font-size:9px;padding:2px 5px}.back-results{font-size:12px}}
+  .reb-meta-actions{display:flex;align-items:center;justify-content:flex-end;gap:13px;flex-wrap:wrap}
+  @media(max-width:700px){.reb-meta-actions{justify-content:flex-start}}
+  /* Printing: tables in landscape, individual instrument records in portrait. */
+  .print-document-heading,.instrument-print-sheet{display:none}
+  .print-current-view,.print-instrument-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap}
+  .print-current-view{border-color:#b9cbd8;background:#f5fafc}
+  .print-instrument-button{border-color:#b9cbd8;background:#e8f1f6}
+  .print-current-view:hover,.print-instrument-button:hover{background:#dcebf4}
+  .print-current-view svg,.print-instrument-button svg{flex:none}
+  @page{size:landscape;margin:10mm 9mm 12mm}
+  @media print{
+    .viewed-marker,.image-enlarge-hint{display:none!important}
+    html,body{height:auto!important;overflow:visible!important;margin:0!important;padding:0!important;background:#fff!important;color:#1f2937!important;
+      -webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+    header,.notice,.toolbar,.meta,.footerbar,.page-logo-wrap,#dialog,#imageLightbox,#rationalePopover{display:none!important}
+    main{margin:0!important;padding:0!important}
+    main>.wrap{max-width:none!important;width:100%!important;margin:0!important;padding:0!important}
+    .print-document-heading{display:block!important;border-bottom:2px solid #315f78;padding:0 0 8px;margin:0 0 12px;break-after:avoid}
+    .print-document-heading .print-kicker{font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:#41627a;font-weight:800;margin-bottom:3px}
+    .print-document-heading h2{margin:0 0 4px;font-size:18px;line-height:1.2;color:#173b52}
+    .print-document-heading .print-meta{display:flex;gap:5px 13px;flex-wrap:wrap;color:#52697b;font-size:10px;line-height:1.35}
+    .print-document-heading .print-filter{font-weight:700}
+    .table-card,.table-wrap{height:auto!important;max-height:none!important;max-width:none!important;overflow:visible!important;box-shadow:none!important;border-radius:0!important}
+    .table-card{border:0!important}
+    table{width:100%!important;min-width:0!important;max-width:100%!important;table-layout:fixed!important;border-collapse:collapse!important}
+    table thead{display:table-header-group!important}
+    table tbody{display:table-row-group!important}
+    table tr{break-inside:avoid-page;page-break-inside:avoid}
+    table th,table td{position:static!important;left:auto!important;top:auto!important;z-index:auto!important;
+      min-width:0!important;max-width:none!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important;
+      padding:5px 5px!important;font-size:9px!important;line-height:1.35!important;border-color:#ccd7df!important;vertical-align:top!important}
+    table th{font-weight:800!important;letter-spacing:0!important;text-transform:none!important;background:#eaf1f5!important;color:#244257!important;border-bottom:1px solid #97aabb!important}
+    .badge{font-size:8.5px!important;padding:3px 5px!important;line-height:1.25!important;box-shadow:none!important}
+    .instrument-record-link,.resource-link{color:#244a63!important;text-decoration:none!important}
+    a[href]::after{content:none!important}
+    /* The instrument sheet is only visible when printing an open instrument. */
+    body[data-print-target="instrument"] header,
+    body[data-print-target="instrument"] main,
+    body[data-print-target="instrument"] #dialog,
+    body[data-print-target="instrument"] #imageLightbox,
+    body[data-print-target="instrument"] #rationalePopover{display:none!important}
+    body[data-print-target="instrument"] .instrument-print-sheet{display:block!important;position:static!important;
+      width:100%!important;max-width:none!important;margin:0!important;padding:0!important;overflow:visible!important;
+      background:#fff!important;color:#1d3141!important;font-size:10.5pt!important;line-height:1.42!important}
+    .instrument-print-sheet .print-record-header{border-bottom:2px solid #244a63;padding:0 0 10px;margin:0 0 15px;break-after:avoid}
+    .instrument-print-sheet .print-record-kicker{font-size:8.5pt;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#506a7b}
+    .instrument-print-sheet .print-record-title{font-size:19pt;line-height:1.2;font-weight:800;color:#173b52;margin:6px 0}
+    .instrument-print-sheet .print-record-meta{font-size:8pt;color:#506a7b;overflow-wrap:anywhere}
+    .instrument-print-sheet .modal-body{margin:0!important;padding:0!important}
+    .instrument-print-sheet .instrument-image-wrap{margin:4px 0 14px!important;break-inside:avoid!important}
+    .instrument-print-sheet .instrument-image{max-width:100%!important;max-height:90mm!important;height:auto!important;object-fit:contain!important;cursor:default!important;box-shadow:none!important}
+    .instrument-print-sheet .detail-grid{display:grid!important;grid-template-columns:minmax(105px,27%) minmax(0,1fr)!important;gap:6px 12px!important;font-size:9.5pt!important;line-height:1.4!important}
+    .instrument-print-sheet .detail-grid dt{font-weight:800!important;color:#4e6475!important;break-after:avoid!important}
+    .instrument-print-sheet .detail-grid dd{margin:0!important;overflow-wrap:anywhere!important}
+    .instrument-print-sheet .long-section{margin-top:16px!important;break-inside:auto!important}
+    .instrument-print-sheet .section-title{color:#244a63!important;font-size:9pt!important;margin:0 0 5px!important;break-after:avoid!important}
+    .instrument-print-sheet .long-section div{line-height:1.48!important;white-space:pre-line!important;overflow-wrap:anywhere!important}
+    .instrument-print-sheet .badge{font-size:9pt!important;font-weight:800!important;padding:3px 8px!important;appearance:none!important;border:1px solid #d2dce3!important;border-radius:999px!important}
+    .instrument-print-sheet .instrument-print-rationale{font-size:8.5pt!important;color:#435d72!important;margin:4px 0 0!important;line-height:1.42!important;white-space:pre-line!important;overflow-wrap:anywhere!important}
+    .instrument-print-sheet .instrument-print-url{font-size:8pt;color:#506a7b!important;display:block;overflow-wrap:anywhere!important;margin-top:2px}
+    .instrument-print-sheet .modal-logo-wrap{margin:14px 0 0!important;padding-top:10px!important}
+    .instrument-print-sheet .modal-logo{width:48px!important;height:48px!important}
+    .instrument-print-sheet a,.instrument-print-sheet .resource-link{color:#204f6d!important;text-decoration:underline!important}
+    .instrument-print-sheet .print-record-note{border-top:1px solid #c7d3dd;margin:12px 0 0;padding:7px 0 0;font-size:8pt;color:#536b7c}
+  }
+  @media(max-width:700px){.print-current-view,.print-instrument-button{font-size:11px;padding:7px 8px}}
 </style>
 </head>
 <body>
@@ -113,7 +179,17 @@
     <div><label for="search">Search instruments</label><input id="search" placeholder="Search instrument information…" /></div>
   </div>
 
-  <div class="meta"><div><strong id="count">0</strong> instruments shown</div><div>Database version: <strong>Prototype 0.1</strong> · Updated October 2026</div></div>
+  <div class="meta"><div><strong id="count">0</strong> instruments shown</div><div class="reb-meta-actions">
+  <button class="btn print-current-view" id="printCurrentView" type="button" title="Print this table or save it as PDF"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/><path d="M18 11h.01"/></svg> Print current view</button>
+  <span>Database version: <strong>Prototype 0.1</strong> · Updated October 2026</span>
+</div></div>
+
+  <section class="print-document-heading" id="printDocumentHeading" aria-label="Printed table title">
+    <div class="print-kicker">SAH HOPE · aSAH Measurement Instrument Database</div>
+    <h2 id="printViewTitle">Rebleeding — Overview</h2>
+    <div class="print-meta"><span id="printViewCount"></span><span id="printFilterSummary" class="print-filter"></span><span id="printGeneratedDate"></span></div>
+  </section>
+
 
   <div class="table-card"><div class="table-wrap"><table>
     <thead><tr id="tableHead"></tr></thead>
@@ -145,6 +221,7 @@
     </div>
     <div class="modal-head-actions">
       <button class="copy-link" id="copyRecordLink" type="button">Copy link</button>
+      <button class="copy-link print-instrument-button" id="printInstrument" type="button" title="Print this instrument or save it as PDF"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/><path d="M18 11h.01"/></svg> Print</button>
       <button class="close" id="close" aria-label="Close" title="Close">×</button>
     </div>
   </div>
@@ -179,6 +256,9 @@
   </div>
   <div id="rationalePopoverText" class="rationale-popover-text"></div>
 </div>
+
+<!-- Print-only copy of the selected instrument record, outside the modal so long content is never clipped. -->
+<article id="instrumentPrintSheet" class="instrument-print-sheet" aria-label="Printable instrument record"></article>
 
 <script>
 let instruments = [];
@@ -765,6 +845,113 @@ document.getElementById('download').onclick=()=>{
   const csv=[instrumentHeaders.join(','),...instruments.map(x=>instrumentHeaders.map(k=>csvEscape(x[k])).join(','))].join('\n');
   const a=document.createElement('a');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.href=url;a.download='asah_rebleeding_measurement_instrument_database.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),0);
 };
+
+// Print a selected comparison view, or a complete instrument record without the
+// scroll constraints of its interactive modal. The existing CSVs are unchanged.
+const instrumentPrintSheet=document.getElementById('instrumentPrintSheet');
+const instrumentPrintPageStyle=document.createElement('style');
+instrumentPrintPageStyle.media='print';
+document.head.appendChild(instrumentPrintPageStyle);
+let printInstrumentRequested=false;
+
+function prepareInstrumentPrint(){
+  const record=instruments.find(i=>(i.id || '')===currentRecordId);
+  if(!record || !dialog.open) return false;
+  hideRationale();
+  instrumentPrintSheet.replaceChildren();
+  const heading=document.createElement('div');
+  heading.className='print-record-header';
+  const kicker=document.createElement('div'); kicker.className='print-record-kicker';
+  kicker.textContent='SAH HOPE · Rebleeding · Instrument record';
+  const title=document.createElement('h1'); title.className='print-record-title';
+  title.textContent=instrumentDisplayName(record);
+  const meta=document.createElement('div'); meta.className='print-record-meta';
+  meta.textContent=`${record.id || 'Instrument'} · Printed ${new Date().toLocaleString(undefined,{dateStyle:'medium',timeStyle:'short'})}`;
+  heading.append(kicker,title,meta);
+  instrumentPrintSheet.appendChild(heading);
+
+  const content=document.getElementById('modalBody').cloneNode(true);
+  content.removeAttribute('id');
+  content.querySelectorAll('.image-enlarge-hint').forEach(el=>el.remove());
+  content.querySelectorAll('.instrument-image').forEach(img=>{
+    ['role','tabindex','title','aria-label'].forEach(a=>img.removeAttribute(a));
+    img.style.cursor='default';
+  });
+  // Suppress missing graphics instead of printing broken image placeholders.
+  content.querySelectorAll('img').forEach(img=>{
+    if(img.complete && img.naturalWidth===0) img.closest('.instrument-image-wrap,.modal-logo-wrap')?.remove();
+    else img.addEventListener('error',()=>img.closest('.instrument-image-wrap,.modal-logo-wrap')?.remove(),{once:true});
+  });
+  // A static coloured badge plus printed explanation is more readable than a
+  // non-interactive popover control on paper.
+  content.querySelectorAll('.badge-rationale').forEach(badge=>{
+    const rationale=String(badge.dataset.rationale || '').trim();
+    const span=document.createElement('span');
+    span.className=badge.className.replace('badge-rationale','').trim();
+    span.setAttribute('style',badge.getAttribute('style') || '');
+    span.textContent=badge.cloneNode(true).textContent.replace("ⓘ","").trim();
+    badge.replaceWith(span);
+    if(rationale){
+      const explanation=document.createElement('div');
+      explanation.className='instrument-print-rationale';
+      explanation.textContent=`Rationale: ${rationale}`;
+      span.insertAdjacentElement('afterend',explanation);
+    }
+  });
+  content.querySelectorAll('a.resource-link').forEach(anchor=>{
+    const url=document.createElement('span'); url.className='instrument-print-url';
+    url.textContent=anchor.href;
+    anchor.insertAdjacentElement('afterend',url);
+  });
+  instrumentPrintSheet.appendChild(content);
+  const footer=document.createElement('p'); footer.className='print-record-note';
+  footer.textContent='Candidate instrument information; inclusion does not indicate Core Outcome Set endorsement.';
+  instrumentPrintSheet.appendChild(footer);
+  document.body.dataset.printTarget='instrument';
+  instrumentPrintPageStyle.textContent='@page { size: portrait; margin: 12mm 14mm; }';
+  return true;
+}
+
+function cleanUpPrint(){
+  printInstrumentRequested=false;
+  delete document.body.dataset.printTarget;
+  instrumentPrintPageStyle.textContent='';
+  instrumentPrintSheet.replaceChildren();
+}
+
+function preparePrintView(){
+  document.getElementById('printViewTitle').textContent='Rebleeding — Instrument Overview';
+  document.getElementById('printViewCount').textContent=`${filteredRows().length} instruments shown`;
+  const activeFilters=[];
+  const term=document.getElementById('search').value.trim();
+  if(term) activeFilters.push(`Search: ${term}`);
+  for(const [field,control] of Object.entries(filterControls)){
+    if(!control.value) continue;
+    const item=fields.find(f=>f.field===field);
+    activeFilters.push(`${item?.label || field}: ${control.value}`);
+  }
+  document.getElementById('printFilterSummary').textContent=activeFilters.length
+    ? `Filters — ${activeFilters.join(' · ')}` : 'All results (no filters)';
+  document.getElementById('printGeneratedDate').textContent=`Printed ${new Date().toLocaleString(undefined,{dateStyle:'medium',timeStyle:'short'})}`;
+}
+
+window.addEventListener('beforeprint',()=>{
+  // Ctrl/Cmd+P also prints the instrument when a record is currently open.
+  if((printInstrumentRequested || dialog.open) && prepareInstrumentPrint()) return;
+  cleanUpPrint();
+  preparePrintView();
+});
+window.addEventListener('afterprint',cleanUpPrint);
+document.getElementById('printCurrentView').addEventListener('click',()=>{
+  printInstrumentRequested=false;
+  preparePrintView();
+  window.print();
+});
+document.getElementById('printInstrument').addEventListener('click',()=>{
+  if(!dialog.open) return;
+  printInstrumentRequested=true;
+  if(prepareInstrumentPrint()) window.print();
+});
 
 async function init(){
   try{
