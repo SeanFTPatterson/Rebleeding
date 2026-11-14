@@ -5,7 +5,7 @@
 - `images/` contains the SAH HOPE logo and instrument graphics.
 - URL fields can render as clickable links with link text configured entirely in `data/fields.csv`.
 
-This version is configured for the **Rebleeding** core domain only.
+This version is configured for the **Rebleeding** core domain only and includes three linked views: **Overview**, **Domain Match**, and **Feasibility**. All three views share the same search, filters, and instrument records.
 
 ## Folder structure
 
@@ -36,6 +36,7 @@ images/
 | `display_order` | Number controlling left-to-right / top-to-bottom order |
 | `format` | How the value is displayed |
 | `link_text` | Text displayed for fields using the `url` format; leave blank for other formats |
+| `view` (optional) | Assign a field to the `domain-match` or `feasibility` comparison view; use `overview` or `none` to keep it out of the assessment views |
 
 Supported `format` values:
 
@@ -52,6 +53,61 @@ Supported `format` values:
 
 
 
+
+## Domain Match and Feasibility view tabs
+
+The three tabs share the same search and filtering controls:
+
+- **Overview:** The original overview table; its columns remain controlled by the `table` column in `data/fields.csv`.
+- **Domain Match:** A side-by-side comparison of the selected instruments' domain match assessment columns, including colour-coded ratings and clickable/hoverable badge rationales where present.
+- **Feasibility:** A horizontally scrolling side-by-side comparison, including categorical feasibility ratings **and open-text fields**. The leftmost instrument-name column remains visible while scrolling.
+
+An instrument can still be opened by selecting a row or its instrument-name link from any of the three views. The record pop-up, search, filters, viewed markers, record navigation, and print functionality remain available.
+
+### Linking directly to a view
+
+Use the `view` query parameter in the published GitHub Pages URL:
+
+```text
+?view=domain-match
+?view=feasibility
+```
+
+The Overview is the default. A direct instrument link can also include a view parameter, e.g. `?view=feasibility&instrument=REB001` (replace `REB001` with a real instrument ID from your CSV). The selected tab is retained in the browser URL when a record is opened or closed.
+
+### Populating the tabs from your CSV files
+
+**No changes to the existing data are required to display the tabs.** They automatically discover common assessment column names in `data/fields.csv`, provided those fields also exist in `data/instruments.csv`.
+
+For reliable control, add an optional `view` column to `data/fields.csv`. Use `domain-match` or `feasibility` for the assessment columns, `overview` or `none` for fields that should not appear in a comparison, and leave it blank for automatic detection. `assessment_view` and `tab` are also accepted as column names if preferred.
+
+Illustrative configuration (not a replacement for your existing `fields.csv`):
+
+| `field` | `label` | `format` | `view` |
+|---|---|---|---|
+| `domain_match` | Overall Domain Match | `badge` | `domain-match` |
+| `domain_match_score` | Domain Match Score | `text` | `domain-match` |
+| `feasibility_ease_of_use` | Ease of use | `badge` | `feasibility` |
+| `feasibility_time_required` | Time required | `badge` | `feasibility` |
+| `feasibility_time_notes` | Time required — details | `longtext` | `feasibility` |
+| `feasibility_cost` | Cost | `badge` | `feasibility` |
+| `feasibility_patient_burden` | Patient burden or risk | `badge` | `feasibility` |
+
+Every named `field` must also be a column in `data/instruments.csv`. Columns in this example are **illustrative**; the updated HTML will not invent values or add columns to your existing data. It will also recognise assessment field names containing `domain_match`, `feasibility`/`feas_`, and several common feasibility dimensions (e.g. `equipment`, `training`, `cost`, `patient_burden`) without requiring `view` entries.
+
+Rating rationales continue to use the existing `<assessment_field>_rationale` naming convention in `data/instruments.csv`. For example, `feasibility_ease_of_use_rationale` provides the rationale when someone hovers, focuses, or selects its rating. These rationale columns do not appear as duplicate comparison columns by default. To display a distinct text field directly in the Feasibility table, assign its `view` to `feasibility` and choose `longtext` or `text` as its format. There is **no character limit** on displayed open text.
+
+If no relevant assessment fields are present in the supplied CSVs, the tab shows a configuration message rather than creating fictional assessment results. Any existing colour rules in `data/badge_styles.csv` take priority; otherwise the comparison view uses the standard fallback colours described below.
+
+### Comparison rating colours
+
+Domain Match recognises **Good** (green), **Partially — somewhat good** (yellow), **Partially — somewhat poor** (orange), **Poor** (red), and **Unable to say / Unable to judge** (white). Feasibility recognises **0 Green**, **1 Amber**, **2 Red**, and **U White**, with unassessed responses displayed in grey. The visible legends explain the meaning of the ratings. Your `data/badge_styles.csv` can override these fallbacks for exact values.
+
+### Printing and PDF export
+
+**Print current view** prints the active Overview, Domain Match or Feasibility table, including the current search and filter results, with a matching title. The browser's **Save as PDF** print destination can be used for export. When an instrument record is open, use its **Print** button (or the browser's print command) to print that full record in portrait orientation. The tables print in landscape orientation. Large or detailed feasibility tables may span multiple pages.
+
+When deploying, replace `index.html` with the updated HTML and retain your existing `data/` and `images/` folders. You do not need to replace or recreate the instrument data files unless you want to add or reclassify assessment fields.
 
 ## Instrument pop-up navigation
 
@@ -161,7 +217,7 @@ search = No
 
 When a badge has a non-empty rationale:
 
-- a small `ⓘ` appears inside the badge;
+- the coloured badge itself is interactive (no separate information icon);
 - **hovering** over the badge shows the rationale;
 - **keyboard focus** shows the rationale;
 - **clicking or tapping** pins the rationale open for touch-screen users;

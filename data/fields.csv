@@ -1,14 +1,27 @@
-field,label,table,popup,filter,search,display_order,format,link_text
-id,Instrument ID,No,No,No,No,10,hidden,
-name,Instrument,Yes,Yes,No,Yes,20,primary,
-acronym,Acronym,No,No,No,Yes,30,text,
-domain,Core domain,No,Yes,No,Yes,40,text,
-domain-definition,Domain definition,No,Yes,No,No,45,url,View definition
-status,Instrument selection status,Yes,Yes,Yes,Yes,50,badge,
-identified-from,Identified in,No,Yes,No,No,60,text,
-review-link,Review link,No,Yes,No,No,70,url,View review
-description,Description,No,Yes,No,No,80,longtext,
-description_reference,Description Reference(s),No,Yes,No,No,100,longtext,
-plain-language_description,Plain-language description,No,No,No,No,90,longtext,
-image,Instrument image,No,Yes,No,No,150,image,
-image_alt,Image alternative text,No,No,No,No,160,hidden,
+﻿field,label,table,popup,filter,search,display_order,format,link_text,heatmap,heatmap_order,heatmap_role,feasibility,feasibility_order,feasibility_role,feasibility_group
+id,Instrument ID,No,No,No,No,10,hidden,,,,,,,,
+name,Instrument,Yes,No,No,Yes,1,primary,,,,,,,,
+acronym,Acronym,No,No,No,Yes,2,hidden,,,,,,,,
+domain,Core domain,No,No,No,No,40,text,,,,,,,,
+domain-definition,Domain definition,No,Yes,No,No,45,url,View domain definition,,,,,,,
+status,Instrument selection status,Yes,Yes,Yes,Yes,20,badge,,,,,,,,
+identified-from,Identified in,No,Yes,No,No,30,text,,,,,,,,
+review-link,Review link,No,Yes,No,No,70,url,View review,,,,,,,
+description,Description,No,Yes,No,No,80,longtext,,,,,,,,
+description_reference,Description reference(s),No,Yes,No,No,100,longtext,,,,,,,,
+image,Instrument image,No,Yes,No,No,150,image,,,,,,,,
+image_alt,Image alternative text,No,No,No,No,160,hidden,,,,,,,,
+domain_match_overall,Overall domain match,No,No,No,No,30,badge,,Yes,99,overall,,,,
+domain_match_1,Match to the Domain,No,No,No,No,31,badge,,Yes,1,,,,,
+domain_match_2,Coverage of Domain Elements,No,No,No,No,32,badge,,Yes,2,,,,,
+domain_match_3,Specificity to the Domain,No,No,No,No,33,badge,,Yes,3,,,,,
+domain_match_4,Standardization,No,No,No,No,34,badge,,Yes,4,,,,,
+domain_match_5,Timing,No,No,No,No,34,badge,,Yes,5,,,,,
+domain_match_6,Appropriateness of Classifications,No,No,No,No,35,badge,,Yes,6,,,,,
+feasibility_overall,Overall feasibility,No,No,No,No,120,badge,,,,,Yes,99,overall,
+feasibility_ease,Ease of use,No,No,No,No,121,badge,,,,,Yes,1,,Feasibility components
+feasibility_time,Time required,No,No,No,No,122,badge,,,,,Yes,2,,Feasibility components
+feasibility_equipment,Equipment,No,No,No,No,123,badge,,,,,Yes,3,,Feasibility components
+feasibility_training,Training,No,No,No,No,124,badge,,,,,Yes,4,,Feasibility components
+feasibility_cost,Cost,No,No,No,No,125,badge,,,,,Yes,5,,Feasibility components
+feasibility_patient_burden,Patient burden,No,No,No,No,126,badge,,,,,Yes,6,,Feasibility components

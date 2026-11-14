@@ -95,6 +95,29 @@
   @media(max-width:700px){h1{font-size:28px}.meta{align-items:flex-start;flex-direction:column}.detail-grid{grid-template-columns:1fr}.detail-grid dt{margin-top:10px}.team-logo{width:78px;height:78px}.modal-logo{width:68px;height:68px}.modal-head{padding:14px}.modal-head-actions{gap:4px}.copy-link{padding:7px 8px;font-size:11px}.modal-navigation{grid-template-columns:1fr 1.5fr 1fr;padding:10px 10px;gap:7px}.modal-navigation .btn{min-width:0;padding:9px 7px;font-size:12px}.record-position{font-size:11px}.record-jump{font-size:12px;padding:7px 8px}.keyboard-hints{display:none}.viewed-marker{font-size:9px;padding:2px 5px}.back-results{font-size:12px}}
   .reb-meta-actions{display:flex;align-items:center;justify-content:flex-end;gap:13px;flex-wrap:wrap}
   @media(max-width:700px){.reb-meta-actions{justify-content:flex-start}}
+  /* Linked overview, domain match and feasibility comparison views. */
+  .view-tabs{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:20px 0 14px;border-bottom:1px solid #cdd9e1}
+  .view-tab{appearance:none;border:1px solid transparent;border-bottom:3px solid transparent;border-radius:8px 8px 0 0;background:transparent;color:#52697c;padding:11px 17px;margin-bottom:-1px;font:inherit;font-size:14px;font-weight:750;cursor:pointer}
+  .view-tab:hover{background:#ecf3f7;color:#173b52}
+  .view-tab[aria-selected="true"]{color:#173b52;background:#fff;border-color:#d5e0e8;border-bottom-color:#244a63}
+  .view-tab:focus-visible{outline:3px solid #7eabbf;outline-offset:2px}
+  .view-panel[hidden]{display:none!important}
+  .view-description{margin:0 0 13px;color:#536477;font-size:14px;line-height:1.6}
+  .assessment-legend{display:flex;align-items:center;gap:9px 12px;flex-wrap:wrap;margin:0 0 15px;font-size:12px;color:#5b6b7c}
+  .assessment-legend strong{color:#34465a}
+  .assessment-legend .badge{vertical-align:middle}
+  .assessment-table{width:max-content;min-width:100%;table-layout:auto}
+  .assessment-table th{min-width:150px;vertical-align:bottom}
+  .assessment-table th:first-child,.assessment-table td:first-child{position:sticky;left:0;z-index:2;min-width:215px;max-width:320px;background:#fff;box-shadow:1px 0 0 var(--line)}
+  .assessment-table th:first-child{z-index:3;background:#f5f8fa}
+  .assessment-table tr:hover td:first-child{background:#f4f8fb}
+  .assessment-table td{max-width:380px;min-width:155px}
+  .assessment-table .assessment-long-col{min-width:260px;max-width:390px}
+  .assessment-table .assessment-open-text{white-space:pre-line;overflow-wrap:anywhere}
+  .assessment-table .assessment-empty-value{color:#98a2b3}
+  .assessment-table tr.instrument-row:focus-visible{outline:2px solid #4d829f;outline-offset:-2px}
+  .assessment-empty{background:#fff;border:1px solid var(--line);border-radius:11px;padding:22px 24px;color:var(--muted);line-height:1.6}
+  @media(max-width:700px){.view-tab{padding:9px 11px;font-size:12px}.assessment-table th:first-child,.assessment-table td:first-child{min-width:175px;max-width:220px}}
   /* Printing: tables in landscape, individual instrument records in portrait. */
   .print-document-heading,.instrument-print-sheet{display:none}
   .print-current-view,.print-instrument-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap}
@@ -107,7 +130,9 @@
     .viewed-marker,.image-enlarge-hint{display:none!important}
     html,body{height:auto!important;overflow:visible!important;margin:0!important;padding:0!important;background:#fff!important;color:#1f2937!important;
       -webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-    header,.notice,.toolbar,.meta,.footerbar,.page-logo-wrap,#dialog,#imageLightbox,#rationalePopover{display:none!important}
+    header,.notice,.toolbar,.meta,.footerbar,.page-logo-wrap,.view-tabs,.view-description,.assessment-legend,#dialog,#imageLightbox,#rationalePopover{display:none!important}
+    .view-panel[hidden]{display:none!important}
+    .view-panel:not([hidden]){display:block!important}
     main{margin:0!important;padding:0!important}
     main>.wrap{max-width:none!important;width:100%!important;margin:0!important;padding:0!important}
     .print-document-heading{display:block!important;border-bottom:2px solid #315f78;padding:0 0 8px;margin:0 0 12px;break-after:avoid}
@@ -125,6 +150,9 @@
       min-width:0!important;max-width:none!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important;
       padding:5px 5px!important;font-size:9px!important;line-height:1.35!important;border-color:#ccd7df!important;vertical-align:top!important}
     table th{font-weight:800!important;letter-spacing:0!important;text-transform:none!important;background:#eaf1f5!important;color:#244257!important;border-bottom:1px solid #97aabb!important}
+    .assessment-table th:first-child,.assessment-table td:first-child{position:static!important;box-shadow:none!important}
+    .assessment-table .assessment-long-col{min-width:0!important;max-width:none!important}
+    .assessment-table .assessment-open-text{white-space:pre-line!important}
     .badge{font-size:8.5px!important;padding:3px 5px!important;line-height:1.25!important;box-shadow:none!important}
     .instrument-record-link,.resource-link{color:#244a63!important;text-decoration:none!important}
     a[href]::after{content:none!important}
@@ -173,7 +201,7 @@
 </header>
 <main>
 <div class="wrap">
-  <div class="notice"><strong>About this database.</strong> Inclusion indicates that an instrument has been identified as potentially relevant for measuring the aSAH core domain.</div>
+  <div class="notice"><strong>About this database.</strong> Inclusion indicates that an instrument has been identified as potentially relevant for measuring the rebleeding aSAH core domain. Rebleeding is defined as a distinct second instance of bleeding from a cerebral aneurysm (before, during or after treatment of the aneurysm).</div>
 
   <div class="toolbar" id="toolbar">
     <div><label for="search">Search instruments</label><input id="search" placeholder="Search instrument information…" /></div>
@@ -184,6 +212,12 @@
   <span>Database version: <strong>Prototype 0.1</strong> · Updated October 2026</span>
 </div></div>
 
+  <nav class="view-tabs" role="tablist" aria-label="Instrument database views">
+    <button class="view-tab" id="tab-overview" type="button" role="tab" aria-controls="overviewPanel" aria-selected="true" tabindex="0" data-view="overview">Overview</button>
+    <button class="view-tab" id="tab-domain-match" type="button" role="tab" aria-controls="domainMatchPanel" aria-selected="false" tabindex="-1" data-view="domain-match">Domain Match</button>
+    <button class="view-tab" id="tab-feasibility" type="button" role="tab" aria-controls="feasibilityPanel" aria-selected="false" tabindex="-1" data-view="feasibility">Feasibility</button>
+  </nav>
+
   <section class="print-document-heading" id="printDocumentHeading" aria-label="Printed table title">
     <div class="print-kicker">SAH HOPE · aSAH Measurement Instrument Database</div>
     <h2 id="printViewTitle">Rebleeding — Overview</h2>
@@ -191,10 +225,43 @@
   </section>
 
 
-  <div class="table-card"><div class="table-wrap"><table>
-    <thead><tr id="tableHead"></tr></thead>
-    <tbody id="tbody"></tbody>
-  </table><div id="empty" class="empty" hidden>No instruments match the selected filters.</div></div></div>
+  <section id="overviewPanel" class="view-panel" role="tabpanel" aria-labelledby="tab-overview">
+    <div class="table-card"><div class="table-wrap"><table>
+      <thead><tr id="tableHead"></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table><div id="empty" class="empty" hidden>No instruments match the selected filters.</div></div></div>
+  </section>
+
+  <section id="domainMatchPanel" class="view-panel" role="tabpanel" aria-labelledby="tab-domain-match" hidden>
+    <p class="view-description">Compare Domain Match assessments across the currently filtered Rebleeding instruments. Hover, focus, or select a coloured rating to view its rationale.</p>
+    <div class="assessment-legend" aria-label="Domain Match rating guide">
+      <strong>Rating guide:</strong>
+      <span class="badge" style="background:#e8f5ee;color:#23613b">Good</span>
+      <span class="badge" style="background:#fff4c8;color:#7b5900">Partially (somewhat good)</span>
+      <span class="badge" style="background:#ffead8;color:#98510e">Partially (somewhat poor)</span>
+      <span class="badge" style="background:#fde8e8;color:#9b2c2c">Poor</span>
+      <span class="badge" style="background:#fff;color:#64748b;border:1px solid #d0d5dd">Unable to say</span>
+    </div>
+    <div id="domainMatchEmpty" class="assessment-empty" hidden></div>
+    <div id="domainMatchTableCard" class="table-card"><div class="table-wrap"><table class="assessment-table" id="domainMatchTable">
+      <thead><tr id="domainMatchHead"></tr></thead><tbody id="domainMatchBody"></tbody>
+    </table></div></div>
+  </section>
+
+  <section id="feasibilityPanel" class="view-panel" role="tabpanel" aria-labelledby="tab-feasibility" hidden>
+    <p class="view-description">Compare feasibility ratings and open-text fields across instruments. Scroll horizontally to see additional columns. Hover, focus, or select a coloured rating to view its classification or rationale.</p>
+    <div class="assessment-legend" aria-label="Feasibility rating guide">
+      <strong>Rating guide:</strong>
+      <span class="badge" style="background:#e8f5ee;color:#23613b">0 · Green</span><span>Practical advantage / manageable requirement</span>
+      <span class="badge" style="background:#fff2d7;color:#875600">1 · Amber</span><span>Additional requirement or concern</span>
+      <span class="badge" style="background:#fde8e8;color:#9b2c2c">2 · Red</span><span>Substantial obstacle</span>
+      <span class="badge" style="background:#fff;color:#64748b;border:1px solid #d0d5dd">U · White</span><span>Insufficient or conflicting information</span>
+    </div>
+    <div id="feasibilityEmpty" class="assessment-empty" hidden></div>
+    <div id="feasibilityTableCard" class="table-card"><div class="table-wrap"><table class="assessment-table" id="feasibilityTable">
+      <thead><tr id="feasibilityHead"></tr></thead><tbody id="feasibilityBody"></tbody>
+    </table></div></div>
+  </section>
 
   <div class="footerbar">
     <div style="color:var(--muted);font-size:14px">Tip: select any row to open the full instrument record.</div>
@@ -266,6 +333,7 @@ let instrumentHeaders = [];
 let fields = [];
 let filterControls = {};
 let badgeStyles = [];
+let activeView = 'overview';
 let currentRecordId = null;
 let originatingRecordId = null;
 let highlightedRecordId = null;
@@ -508,7 +576,7 @@ function safeCssColor(value, fallback){
   return fallback;
 }
 
-function badge(fieldName,value,record){
+function badge(fieldName,value,record,fallbackStyle=null,rationaleOverride=''){
   const text=String(value || '').trim();
   const fieldKey=String(fieldName || '').trim().toLowerCase();
   const valueKey=text.toLowerCase();
@@ -524,28 +592,28 @@ function badge(fieldName,value,record){
   );
 
   const match=specific || wildcard;
-  const background=safeCssColor(match?.background,'#f1f3f5');
-  const colour=safeCssColor(match?.text,'#495057');
+  const background=safeCssColor(match?.background,fallbackStyle?.background || '#f1f3f5');
+  const colour=safeCssColor(match?.text,fallbackStyle?.color || '#495057');
+  const border=fallbackStyle?.border && !match ? `;border:${fallbackStyle.border}` : '';
 
   // Convention: domain_match -> domain_match_rationale.
   // This also works generically for any badge field.
   const rationaleField=`${fieldName}_rationale`;
-  const rationale=String(record?.[rationaleField] || '').trim();
+  const rationale=String(record?.[rationaleField] || rationaleOverride || '').trim();
 
   if(!rationale){
-    return `<span class="badge" style="background:${escapeHTML(background)};color:${escapeHTML(colour)}">${escapeHTML(text)}</span>`;
+    return `<span class="badge" style="background:${escapeHTML(background)};color:${escapeHTML(colour)}${border}">${escapeHTML(text)}</span>`;
   }
 
   return `<button type="button"
       class="badge badge-rationale"
-      style="background:${escapeHTML(background)};color:${escapeHTML(colour)}"
+      style="background:${escapeHTML(background)};color:${escapeHTML(colour)}${border}"
       data-rationale="${escapeHTML(rationale)}"
       data-rationale-label="${escapeHTML(text)}"
       aria-haspopup="dialog"
       aria-expanded="false"
       title="View rationale">
       ${escapeHTML(text)}
-      <span class="badge-info-icon" aria-hidden="true">ⓘ</span>
     </button>`;
 }
 
@@ -580,6 +648,155 @@ function formatValue(field, record, context='table'){
 function uniqueValues(fieldName){
   return [...new Set(instruments.map(x=>x[fieldName]).filter(v=>String(v || '').trim() !== ''))].sort((a,b)=>a.localeCompare(b));
 }
+
+// An optional `view` (or `assessment_view`) column in fields.csv explicitly
+// assigns a field to a comparison tab. Otherwise commonly used field names
+// are recognised; rationales remain accessible from their rating badges.
+function assessmentViewForField(field){
+  const explicit=String(field.view || field.assessment_view || field.tab || '').trim().toLowerCase().replace(/[\s_]+/g,'-');
+  if(explicit){
+    if(['domain','domain-match','domainmatch'].includes(explicit)) return 'domain-match';
+    if(['feasibility','feasible'].includes(explicit)) return 'feasibility';
+    return null;
+  }
+  const key=String(field.field || '').toLowerCase().replace(/[\s-]+/g,'_');
+  const label=String(field.label || '').toLowerCase();
+  if(/(?:^|_)domain_match(?:_|$)|^domainmatch(?:_|$)|^match_(?:rating|score|assessment|overall)/.test(key)
+    || /domain\s+match/.test(label)) return 'domain-match';
+  if(/(?:^|_)feasib(?:ility)?(?:_|$)|^feas_/.test(key) || /feasib(?:ility)?/i.test(label)) return 'feasibility';
+  const familiar=['ease_of_use','ease_of_administration','time_required','time_to_complete','administration_time',
+    'equipment','equipment_required','special_equipment','training','training_required','cost','costs',
+    'patient_burden','burden','patient_risk','risks','risk_to_patient','safety','resource_requirements'];
+  if(familiar.includes(key) || familiar.some(root=>key.startsWith(root+'_'))) return 'feasibility';
+  return null;
+}
+function assessmentFieldsFor(view){
+  return sortedFields(f=>assessmentViewForField(f)===view &&
+    (!String(f.field || '').toLowerCase().endsWith('_rationale') ||
+      ['domain-match','feasibility'].includes(String(f.view || f.assessment_view || f.tab || '').trim().toLowerCase().replace(/[\s_]+/g,'-'))) &&
+    !['image','primary'].includes(f.format));
+}
+function ratingStyle(value,view){
+  const v=String(value || '').trim().toLowerCase().replace(/[\s_/-]+/g,' ');
+  const white={background:'#fff',color:'#64748b',border:'1px solid #d0d5dd'};
+  if(['u','unable','unable to say','unable to judge','unknown','no evidence','insufficient evidence'].includes(v)) return white;
+  if(['not assessed','not evaluated','n a','na'].includes(v)) return {background:'#dfe3e8',color:'#344054'};
+  if(view==='feasibility'){
+    if(/^0(?:\s|$)/.test(v) || ['green','manageable'].includes(v)) return {background:'#e8f5ee',color:'#23613b'};
+    if(/^1(?:\s|$)/.test(v) || ['amber','yellow'].includes(v)) return {background:'#fff2d7',color:'#875600'};
+    if(/^2(?:\s|$)/.test(v) || v==='red') return {background:'#fde8e8',color:'#9b2c2c'};
+  }
+  if(['good','yes','green'].includes(v)) return {background:'#e8f5ee',color:'#23613b'};
+  if(v.includes('somewhat good') || v.includes('partially good') || v.includes('partial good')) return {background:'#fff4c8',color:'#7b5900'};
+  if(v.includes('somewhat poor') || v.includes('partially poor') || v.includes('partial poor')) return {background:'#ffead8',color:'#98510e'};
+  if(v==='poor' || v==='no' || v==='red') return {background:'#fde8e8',color:'#9b2c2c'};
+  if(v.startsWith('partial') || v==='amber' || v==='yellow') return {background:'#fff4c8',color:'#7b5900'};
+  return null;
+}
+function feasibilityRatingDescription(value){
+  const v=String(value || '').trim().toLowerCase().replace(/[\s_/-]+/g,' ');
+  if(/^0(?:\s|$)/.test(v) || v==='green') return '0 Green: practical advantage or manageable requirement.';
+  if(/^1(?:\s|$)/.test(v) || ['amber','yellow'].includes(v)) return '1 Amber: additional requirement or concern.';
+  if(/^2(?:\s|$)/.test(v) || v==='red') return '2 Red: documented substantial obstacle.';
+  if(['u','unable','unable to say','unable to judge','unknown','no evidence','insufficient evidence'].includes(v))
+    return 'U White: missing or conflicting information prevents assessment.';
+  return '';
+}
+function assessmentCell(field,record,view){
+  const value=String(record[field.field] || '').trim();
+  if(!value) return '<span class="assessment-empty-value">—</span>';
+  if(field.format==='url') return formatValue(field,record,'table');
+  if(field.format==='longtext') return `<span class="assessment-open-text">${escapeHTML(value)}</span>`;
+  const fallback=ratingStyle(value,view);
+  if(field.format==='badge' || fallback) return badge(field.field,value,record,fallback,view==='feasibility' ? feasibilityRatingDescription(value) : '');
+  return `<span class="assessment-open-text">${escapeHTML(value)}</span>`;
+}
+function wireInstrumentTable(root){
+  root.querySelectorAll('tr.instrument-row').forEach(row=>{
+    row.addEventListener('click',event=>{
+      if(event.target.closest('a,button')) return;
+      openRecord(row.dataset.recordId,{fromResults:true});
+    });
+    row.addEventListener('keydown',event=>{
+      if((event.key==='Enter' || event.key===' ') && !event.target.closest('a,button')){
+        event.preventDefault();openRecord(row.dataset.recordId,{fromResults:true});
+      }
+    });
+  });
+  root.querySelectorAll('a.instrument-record-link').forEach(link=>{
+    link.addEventListener('click',event=>{
+      event.stopPropagation();
+      if(event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button!==0) return;
+      event.preventDefault();openRecord(link.dataset.recordId,{fromResults:true});
+    });
+  });
+  root.querySelectorAll('a:not(.instrument-record-link)').forEach(link=>link.addEventListener('click',event=>event.stopPropagation()));
+}
+function renderAssessmentView(view,rows){
+  const prefix=view==='domain-match' ? 'domainMatch' : 'feasibility';
+  const head=document.getElementById(`${prefix}Head`);
+  const body=document.getElementById(`${prefix}Body`);
+  const card=document.getElementById(`${prefix}TableCard`);
+  const empty=document.getElementById(`${prefix}Empty`);
+  const compared=assessmentFieldsFor(view);
+  if(!compared.length || !rows.length){
+    card.hidden=true;empty.hidden=false;
+    empty.textContent=!compared.length
+      ? `No ${view==='domain-match' ? 'Domain Match' : 'Feasibility'} assessment fields are configured in data/fields.csv and data/instruments.csv yet. Add the relevant columns and, if needed, assign their view in fields.csv.`
+      : 'No instruments match the current search and filters.';
+    head.replaceChildren();body.replaceChildren();return;
+  }
+  empty.hidden=true;card.hidden=false;
+  head.innerHTML=`<th scope="col">Instrument</th>`+compared.map(f=>
+    `<th scope="col" class="${f.format==='longtext' ? 'assessment-long-col' : ''}">${escapeHTML(f.label || f.field)}</th>`).join('');
+  const primary=fields.find(f=>f.format==='primary') || fields.find(f=>f.field==='name');
+  const viewed=getViewedInstruments();
+  body.innerHTML=rows.map((record,index)=>{
+    const id=record.id || `row-${index}`;
+    const name=primary ? formatValue(primary,record,'table') : `<span class="name">${escapeHTML(instrumentDisplayName(record))}</span>`;
+    const classes=['instrument-row'];
+    if(viewed.has(id)) classes.push('viewed-row');
+    if(dialog && dialog.open && id===currentRecordId) classes.push('active-row');
+    if(id===highlightedRecordId) classes.push('return-highlight');
+    return `<tr class="${classes.join(' ')}" data-record-id="${escapeHTML(id)}" tabindex="0"><td>${name}</td>`+
+      compared.map(f=>`<td class="${f.format==='longtext' ? 'assessment-long-col' : ''}">${assessmentCell(f,record,view)}</td>`).join('')+'</tr>';
+  }).join('');
+  wireInstrumentTable(body);
+}
+function normalizeView(name){return ['overview','domain-match','feasibility'].includes(name) ? name : 'overview';}
+function setActiveView(name,{updateUrl=true}={}){
+  const view=normalizeView(name);
+  activeView=view;
+  hideRationale();
+  const ids={'overview':'overviewPanel','domain-match':'domainMatchPanel','feasibility':'feasibilityPanel'};
+  document.querySelectorAll('.view-tab').forEach(tab=>{
+    const selected=tab.dataset.view===view;
+    tab.setAttribute('aria-selected',String(selected));
+    tab.tabIndex=selected ? 0 : -1;
+  });
+  Object.entries(ids).forEach(([key,id])=>{
+    document.getElementById(id).hidden=key!==view;
+  });
+  if(updateUrl){
+    const url=new URL(window.location.href);
+    if(view==='overview') url.searchParams.delete('view');
+    else url.searchParams.set('view',view);
+    history.replaceState(null,'',url);
+  }
+}
+document.querySelectorAll('.view-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>setActiveView(tab.dataset.view));
+  tab.addEventListener('keydown',event=>{
+    if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+    event.preventDefault();
+    const tabs=[...document.querySelectorAll('.view-tab')];
+    let index=tabs.indexOf(tab);
+    if(event.key==='Home') index=0;
+    else if(event.key==='End') index=tabs.length-1;
+    else index=(index+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;
+    tabs[index].focus();tabs[index].click();
+  });
+});
 
 function buildInterface(){
   const toolbar=document.getElementById('toolbar');
@@ -625,18 +842,9 @@ function render(){
     return `<tr class="${classes.join(' ')}" data-record-id="${escapeHTML(id)}" tabindex="0">${cells}</tr>`;
   }).join('');
 
-  tbody.querySelectorAll('.instrument-row').forEach(r=>{
-    r.addEventListener('click',e=>{ if(e.target.closest('a') || e.target.closest('.badge-rationale')) return; openRecord(r.dataset.recordId,{fromResults:true}); });
-    r.addEventListener('keydown',e=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openRecord(r.dataset.recordId,{fromResults:true}); } });
-  });
-  tbody.querySelectorAll('.instrument-record-link').forEach(a=>{
-    a.addEventListener('click',e=>{
-      e.stopPropagation();
-      if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button!==0) return;
-      e.preventDefault(); openRecord(a.dataset.recordId,{fromResults:true});
-    });
-  });
-  tbody.querySelectorAll('a:not(.instrument-record-link)').forEach(a=>a.addEventListener('click',e=>e.stopPropagation()));
+  wireInstrumentTable(tbody);
+  renderAssessmentView('domain-match',rows);
+  renderAssessmentView('feasibility',rows);
 }
 
 document.getElementById('search').addEventListener('input',render);
@@ -920,7 +1128,7 @@ function cleanUpPrint(){
 }
 
 function preparePrintView(){
-  document.getElementById('printViewTitle').textContent='Rebleeding — Instrument Overview';
+  document.getElementById('printViewTitle').textContent=`Rebleeding — ${{'overview':'Instrument Overview','domain-match':'Domain Match','feasibility':'Feasibility'}[activeView]}`;
   document.getElementById('printViewCount').textContent=`${filteredRows().length} instruments shown`;
   const activeFilters=[];
   const term=document.getElementById('search').value.trim();
@@ -974,6 +1182,7 @@ async function init(){
     badgeStyles=badgeData.records;
     fields=fields.filter(f=>instrumentHeaders.includes(f.field));
     buildInterface(); render();
+    setActiveView(new URL(window.location.href).searchParams.get('view'),{updateUrl:false});
 
     const requestedId=new URL(window.location.href).searchParams.get('instrument');
     if(requestedId && instruments.some(record=>(record.id || '')===requestedId)){ openRecord(requestedId,{fromUrl:true}); }
