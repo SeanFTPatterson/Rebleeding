@@ -1,11 +1,9 @@
-# Rebleeding aSAH Measurement Instrument Database — prototype
+# Rebleeding aSAH Measurement Instrument Database
 
 - `data/instruments.csv` contains the instrument records.
 - `data/fields.csv` controls which fields appear in the main table, pop-up, filters, and search.
 - `images/` contains the SAH HOPE logo and instrument graphics.
 - URL fields can render as clickable links with link text configured entirely in `data/fields.csv`.
-
-This version is configured for the **Rebleeding** core domain only and includes three linked views: **Overview**, **Domain Match**, and **Feasibility**. All three views share the same search, filters, and instrument records.
 
 ## Folder structure
 
@@ -36,7 +34,6 @@ images/
 | `display_order` | Number controlling left-to-right / top-to-bottom order |
 | `format` | How the value is displayed |
 | `link_text` | Text displayed for fields using the `url` format; leave blank for other formats |
-| `view` (optional) | Assign a field to the `domain-match` or `feasibility` comparison view; use `overview` or `none` to keep it out of the assessment views |
 
 Supported `format` values:
 
@@ -53,61 +50,6 @@ Supported `format` values:
 
 
 
-
-## Domain Match and Feasibility view tabs
-
-The three tabs share the same search and filtering controls:
-
-- **Overview:** The original overview table; its columns remain controlled by the `table` column in `data/fields.csv`.
-- **Domain Match:** A side-by-side comparison of the selected instruments' domain match assessment columns, including colour-coded ratings and clickable/hoverable badge rationales where present.
-- **Feasibility:** A horizontally scrolling side-by-side comparison, including categorical feasibility ratings **and open-text fields**. The leftmost instrument-name column remains visible while scrolling.
-
-An instrument can still be opened by selecting a row or its instrument-name link from any of the three views. The record pop-up, search, filters, viewed markers, record navigation, and print functionality remain available.
-
-### Linking directly to a view
-
-Use the `view` query parameter in the published GitHub Pages URL:
-
-```text
-?view=domain-match
-?view=feasibility
-```
-
-The Overview is the default. A direct instrument link can also include a view parameter, e.g. `?view=feasibility&instrument=REB001` (replace `REB001` with a real instrument ID from your CSV). The selected tab is retained in the browser URL when a record is opened or closed.
-
-### Populating the tabs from your CSV files
-
-**No changes to the existing data are required to display the tabs.** They automatically discover common assessment column names in `data/fields.csv`, provided those fields also exist in `data/instruments.csv`.
-
-For reliable control, add an optional `view` column to `data/fields.csv`. Use `domain-match` or `feasibility` for the assessment columns, `overview` or `none` for fields that should not appear in a comparison, and leave it blank for automatic detection. `assessment_view` and `tab` are also accepted as column names if preferred.
-
-Illustrative configuration (not a replacement for your existing `fields.csv`):
-
-| `field` | `label` | `format` | `view` |
-|---|---|---|---|
-| `domain_match` | Overall Domain Match | `badge` | `domain-match` |
-| `domain_match_score` | Domain Match Score | `text` | `domain-match` |
-| `feasibility_ease_of_use` | Ease of use | `badge` | `feasibility` |
-| `feasibility_time_required` | Time required | `badge` | `feasibility` |
-| `feasibility_time_notes` | Time required — details | `longtext` | `feasibility` |
-| `feasibility_cost` | Cost | `badge` | `feasibility` |
-| `feasibility_patient_burden` | Patient burden or risk | `badge` | `feasibility` |
-
-Every named `field` must also be a column in `data/instruments.csv`. Columns in this example are **illustrative**; the updated HTML will not invent values or add columns to your existing data. It will also recognise assessment field names containing `domain_match`, `feasibility`/`feas_`, and several common feasibility dimensions (e.g. `equipment`, `training`, `cost`, `patient_burden`) without requiring `view` entries.
-
-Rating rationales continue to use the existing `<assessment_field>_rationale` naming convention in `data/instruments.csv`. For example, `feasibility_ease_of_use_rationale` provides the rationale when someone hovers, focuses, or selects its rating. These rationale columns do not appear as duplicate comparison columns by default. To display a distinct text field directly in the Feasibility table, assign its `view` to `feasibility` and choose `longtext` or `text` as its format. There is **no character limit** on displayed open text.
-
-If no relevant assessment fields are present in the supplied CSVs, the tab shows a configuration message rather than creating fictional assessment results. Any existing colour rules in `data/badge_styles.csv` take priority; otherwise the comparison view uses the standard fallback colours described below.
-
-### Comparison rating colours
-
-Domain Match recognises **Good** (green), **Partially — somewhat good** (yellow), **Partially — somewhat poor** (orange), **Poor** (red), and **Unable to say / Unable to judge** (white). Feasibility recognises **0 Green**, **1 Amber**, **2 Red**, and **U White**, with unassessed responses displayed in grey. The visible legends explain the meaning of the ratings. Your `data/badge_styles.csv` can override these fallbacks for exact values.
-
-### Printing and PDF export
-
-**Print current view** prints the active Overview, Domain Match or Feasibility table, including the current search and filter results, with a matching title. The browser's **Save as PDF** print destination can be used for export. When an instrument record is open, use its **Print** button (or the browser's print command) to print that full record in portrait orientation. The tables print in landscape orientation. Large or detailed feasibility tables may span multiple pages.
-
-When deploying, replace `index.html` with the updated HTML and retain your existing `data/` and `images/` folders. You do not need to replace or recreate the instrument data files unless you want to add or reclassify assessment fields.
 
 ## Instrument pop-up navigation
 
@@ -201,7 +143,7 @@ Example:
 ```csv
 id,name,domain_match,domain_match_rationale
 REB001,Example Instrument,Yes,"Directly assesses the intended Rebleeding domain."
-REB002,Another Instrument,Partially / with concerns,"Captures some evidence of recurrent bleeding but has limitations for consistently identifying the intended Rebleeding event."
+REB002,Another Instrument,Partially / with concerns,"Identifies potential recurrent bleeding but may require confirmatory assessment."
 ```
 
 If `domain_match_rationale` is also listed in `data/fields.csv`, configure it as a hidden field:
@@ -217,7 +159,7 @@ search = No
 
 When a badge has a non-empty rationale:
 
-- the coloured badge itself is interactive (no separate information icon);
+- the badge itself indicates that a rationale is available through hover, keyboard focus, click, or tap;
 - **hovering** over the badge shows the rationale;
 - **keyboard focus** shows the rationale;
 - **clicking or tapping** pins the rationale open for touch-screen users;
@@ -235,7 +177,154 @@ The rationale viewer now uses the browser's native **Popover API** (`popover="ma
 
 Native popovers are also placed in the browser's **top layer**, so the rationale can appear above an open instrument record as intended. A fallback is included for browsers without Popover API support.
 
+## Domain Match comparison view
+
+The results page now includes a three-option view toggle:
+
+- **Standard view** — preserves the existing configurable summary table and row-to-record navigation.
+- **Domain Match** — compares Domain Match ratings across the same instruments currently shown by the active search and filters.
+- **Feasibility** — provides a horizontally scrollable comparison table for categorical feasibility ratings and open-text information, with all configured fields shown in one view.
+
+The selected view is saved in the visitor's browser using `localStorage`, so returning to the page restores the last-used view when no view is specified in the URL.
+
+### Shareable links to individual tabs
+
+Each results tab now has its own direct URL. Replace `https://YOUR-SITE-URL/` with your actual GitHub Pages (or other hosted) database address:
+
+- **Standard view:** `https://YOUR-SITE-URL/?view=standard`
+- **Domain Match:** `https://YOUR-SITE-URL/?view=domain-match`
+- **Feasibility:** `https://YOUR-SITE-URL/?view=feasibility`
+
+Selecting a tab updates the browser address automatically, without reloading the database. To share a tab, copy its URL directly from the browser address bar (there is no separate Copy tab link button). When someone follows a link, the specified tab opens directly even if they previously selected another tab. Browser Back and Forward buttons also switch between previously visited tabs.
+
+Instrument deep links still work: `?view=domain-match&instrument=REB001` opens instrument `REB001` with Domain Match selected behind the pop-up. For a link to the tab alone, copy the browser URL when no instrument record is open (i.e., when the URL does not contain `instrument=...`). The separate Copy link button inside an instrument record is retained.
+
+No changes to `data/instruments.csv` or `data/fields.csv` are needed for direct links. Your existing colour rules can remain unchanged for the linking feature. Existing bookmarks using `?instrument=...` continue to work, and view-specific links work with the same hosted `index.html` file.
+
+### Configuring Domain Match columns
+
+The preferred approach is to add two optional columns to `data/fields.csv`:
+
+| Column | Purpose |
+|---|---|
+| `heatmap` | `Yes` to include the field as a heat map column |
+| `heatmap_order` | Optional numeric order for heat map columns; falls back to `display_order` |
+| `heatmap_role` | Optional; set to `overall` to visually separate the overall judgement from domain match ratings |
+
+Illustrative example (use your actual `instruments.csv` column names; these fields are not added by the HTML):
+
+```csv
+field,label,table,popup,filter,search,display_order,format,link_text,heatmap,heatmap_order,heatmap_role
+domain_match_event,Detection of a distinct bleeding event,No,Yes,No,No,40,badge,,Yes,1,
+domain_match_timing,Applicability across treatment stages,No,Yes,No,No,41,badge,,Yes,2,
+domain_match_confirmation,Confirmation of rebleeding,No,Yes,No,No,42,badge,,Yes,3,
+domain_match,Overall Domain Match,Yes,Yes,Yes,Yes,20,badge,,Yes,99,overall
+```
+
+If no fields are explicitly marked `heatmap=Yes`, the page automatically falls back to badge fields named `domain_match` or beginning with `domain_match_`. Fields ending in `_rationale` are excluded automatically.
+
+### Domain Match rationales
+
+Each component can use the same rationale naming convention as the existing badges:
+
+```text
+<heatmap_field>_rationale
+```
+
+For example:
+
+```text
+domain_match_event
+domain_match_event_rationale
+```
+
+When a rationale is available, the coloured heat map cell can be hovered, keyboard-focused, clicked, or tapped to open the existing rationale popover. The cell itself does not require an additional information icon.
+
+### Domain Match colours and legend
+
+Heat map cells use the same rules in `data/badge_styles.csv` as ordinary badges. This keeps the colour meaning consistent between the standard table, instrument pop-up, and heat map.
+
+The heat map automatically builds a legend from rating values present in the currently filtered result set. The instrument-name column remains sticky while horizontally scrolling, and the overall Domain Match column is visually separated from other assessment columns.
+
+### Filtering and instrument records
+
+The heat map is not a separate dataset. It uses `filteredRows()`, so all existing search and dropdown filters apply identically in both views. Selecting an instrument name in the heat map opens the same detailed instrument record, including viewed markers and record navigation.
+
+## Feasibility comparison view
+
+The **Feasibility** tab is designed for wider mixed-format assessments. It uses a sticky instrument-name column, native horizontal scrolling, and dedicated **Scroll left / Scroll right** buttons.
+
+All fields configured for the Feasibility tab appear together, including categorical ratings, scores, comments, and open-text information. There is no Compact/Detailed toggle.
+
+Open-text values display in full directly in their Feasibility cells, regardless of length. Text wraps within the column and preserves line breaks. Taller rows may result when the text is long; the table retains horizontal scrolling.
+
+### Configuring feasibility columns
+
+The preferred approach is to add optional feasibility columns to `data/fields.csv`:
+
+| Column | Purpose |
+|---|---|
+| `feasibility` | `Yes` to include the field in the Feasibility tab |
+| `feasibility_order` | Optional numeric left-to-right order; falls back to `display_order` |
+| `feasibility_group` | Optional short group label shown above the column label, such as `Practical implementation`, `Patient considerations`, or `Overall` |
+| `feasibility_role` | Optional role. Use `overall` to visually separate an overall judgement/score; use `comment`, `narrative`, `details`, or `open text` for open-text fields |
+
+Example:
+
+```csv
+field,label,table,popup,filter,search,display_order,format,link_text,feasibility,feasibility_order,feasibility_group,feasibility_role
+feasibility_ease,Ease of use,No,Yes,No,No,50,badge,,Yes,1,Practical implementation,
+feasibility_time,Time required,No,Yes,No,No,51,badge,,Yes,2,Practical implementation,
+feasibility_equipment,Equipment,No,Yes,No,No,52,badge,,Yes,3,Practical implementation,
+feasibility_training,Training,No,Yes,No,No,53,badge,,Yes,4,Practical implementation,
+feasibility_cost,Cost,No,Yes,No,No,54,badge,,Yes,5,Practical implementation,
+feasibility_burden,Patient burden / risk,No,Yes,No,No,55,badge,,Yes,6,Patient considerations,
+feasibility_overall,Overall feasibility,No,Yes,No,No,56,badge,,Yes,90,Overall,overall
+feasibility_score,Overall score,No,Yes,No,No,57,text,,Yes,91,Overall,overall
+feasibility_comments,Comments,No,Yes,No,Yes,58,longtext,,Yes,100,Overall,comment
+```
+
+If no fields are explicitly marked `feasibility=Yes`, the page automatically falls back to configured fields named `feasibility` or beginning with `feasibility_`. Fields ending in `_rationale` are excluded.
+
+### Categorical ratings and rationales
+
+The Feasibility legend is fixed, regardless of the ratings present in the filtered instruments:
+
+- **0 Green:** practical advantage / manageable requirement
+- **1 Amber:** additional requirement or concern
+- **2 Red:** documented substantial obstacle
+- **U White:** missing/conflicting information prevents assessment
+
+The Feasibility legend uses these four categories without a Yellow rating. Colours for the table cells and legend come from your existing `data/badge_styles.csv`. Ensure that file has matching rules for `0`, `1`, `2`, and `U`; otherwise colours will fall back to neutral grey. An example configuration is shown below. **No changes to assessment values are made by this update.**
+
+Fields using `format=badge` use the same colour rules from `data/badge_styles.csv` as the Standard and Domain Match views. A matching `<field>_rationale` column continues to provide hover, keyboard-focus, click, and tap rationales without adding an information icon.
+
+### Open-text fields
+
+Open text can use `format=text` or `format=longtext`. All fields marked `feasibility=Yes` appear in the Feasibility tab. There is no character limit or truncation in the Feasibility comparison table: all stored text is shown inline with wrapping and preserved line breaks. For CSV data containing commas or line breaks, enclose the value in double quotes.
+
+Older `fields.csv` files may still have `feasibility_mode` or `feasibility_detail` columns. These are now ignored; you do not need to remove them from the CSV. To hide an item from the Feasibility tab, change its `feasibility` setting to `No` (when other feasibility fields are explicitly selected).
+
 ## Prototype disclaimer
 
 The included instrument records have been identified as potential candidate instruments for measuring the aSAH Core Domain: Rebleeding. They should not be treated as the definitive aSAH instrument inventory or as COS endorsements.
 
+
+
+## Rebleeding deployment notes
+
+Use this updated `index.html` and `README.md` in your existing Rebleeding GitHub Pages repository. Keep your existing `data/instruments.csv`, `data/fields.csv`, `data/badge_styles.csv`, `.nojekyll`, and `images/` directory. This update changes the view presentation and interface, **not the underlying Rebleeding assessments**.
+
+The Domain Match and Feasibility tabs intentionally use **the same style, comparison-table structure, and interactions as the supplied Functional Outcomes reference**, including the fixed 0/1/2/U feasibility legend, grouped column headings, sticky instrument names, and printing.
+
+**Suggested colour rules (add to `data/badge_styles.csv` if not already present):**
+
+```csv
+field,value,background,text
+*,0,#e8f5ee,#23613b
+*,1,#fff1dc,#95520d
+*,2,#fdecec,#9b2c2c
+*,U,#ffffff,#475467
+```
+
+Do not repeat the `field,value,background,text` header when appending rows to an existing CSV. If your database uses other numeric/wording rating scales, keep the values and corresponding colour rules consistent with your assessment methodology.
