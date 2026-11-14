@@ -803,26 +803,6 @@ function buildFeasibilityHead(){
   });
 }
 
-function renderFeasibilityLegend(feasFields,rows){
-  const legend=document.getElementById('feasibilityLegend');
-  const badgeField=feasFields.find(field=>String(field.format || '').trim().toLowerCase()==='badge');
-  if(!badgeField){ legend.hidden=true; legend.innerHTML=''; return; }
-
-  // The Feasibility scale is fixed: show every category even if filtered rows
-  // contain only some ratings. Match swatches to data/badge_styles.csv.
-  const categories=[
-    {value:'0',name:'Green',description:'practical advantage / manageable requirement'},
-    {value:'1',name:'Amber',description:'additional requirement or concern'},
-    {value:'2',name:'Red',description:'documented substantial obstacle'},
-    {value:'U',name:'White',description:'missing/conflicting information prevents assessment'}
-  ];
-  legend.innerHTML=categories.map(({value,name,description})=>{
-    const {background}=badgeColours(badgeField.field,value);
-    return `<span class="heatmap-legend-item"><span class="heatmap-legend-swatch" style="background:${escapeHTML(background)}" aria-hidden="true"></span><span><strong>${value} ${name}:</strong> ${escapeHTML(description)}</span></span>`;
-  }).join('');
-  legend.hidden=false;
-}
-
 function renderRatingLegend(legend,legendFields,rows){
   const preferred=['good','partially good','partially / good','partially or with concerns','partially / with concerns','partially poor','poor','very easy','easy','moderate','difficult','very difficult','yes','no','unable to judge','no evidence'];
   const values=[];
