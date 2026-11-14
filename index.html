@@ -32,11 +32,54 @@
   .meta{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:18px 2px 10px;color:var(--muted);font-size:14px}.meta strong{color:var(--ink)}
   .table-card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}.table-wrap{overflow-x:auto}
   table{width:100%;border-collapse:collapse;min-width:760px} th,td{padding:14px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top} th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);background:#fafafa} td{font-size:14px;line-height:1.4}
+  .view-bar{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 12px}
+  .view-toggle{display:inline-flex;padding:4px;background:#eef2f5;border:1px solid #d9e0e5;border-radius:10px;gap:3px}
+  .view-toggle-btn{appearance:none;border:0;background:transparent;color:var(--muted);padding:8px 12px;border-radius:7px;font:inherit;font-size:13px;font-weight:800;cursor:pointer}
+  .view-toggle-btn:hover{color:var(--accent);background:rgba(255,255,255,.72)}
+  .view-toggle-btn[aria-pressed="true"]{background:#fff;color:var(--accent);box-shadow:0 1px 4px rgba(0,0,0,.09)}
+  .view-toggle-btn:focus-visible{outline:3px solid rgba(36,74,99,.26);outline-offset:2px}
+  .view-actions{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap}
+  .heatmap-help{font-size:13px;color:var(--muted);line-height:1.4}
+  .heatmap-legend{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0 0 12px;font-size:12px;color:var(--muted)}
+  .heatmap-legend-item{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+  .heatmap-legend-swatch{width:18px;height:18px;border:1px solid rgba(31,41,55,.10);border-radius:5px;flex:0 0 auto}
+  .feasibility-legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:10px 20px}
+  .feasibility-legend .heatmap-legend-item{white-space:normal;align-items:flex-start;line-height:1.45}
+  .feasibility-legend .heatmap-legend-swatch{margin-top:1px}
+  .heatmap-table{min-width:980px;table-layout:auto}
+  .heatmap-table th{position:sticky;top:0;z-index:3;text-align:center;vertical-align:bottom;min-width:145px;max-width:210px;white-space:normal;line-height:1.3}
+  .heatmap-table th:first-child,.heatmap-table td:first-child{position:sticky;left:0;z-index:4;text-align:left;min-width:260px;max-width:340px;background:#fff;border-right:1px solid var(--line)}
+  .heatmap-table th:first-child{z-index:5;background:#fafafa}
+  .heatmap-table tr:hover td{background:#fbfcfd}
+  .heatmap-table tr:hover td:first-child{background:#fbfcfd}
+  .heatmap-table .heatmap-overall{border-left:3px solid #cbd5dc}
+  .heatmap-cell{padding:8px 9px;text-align:center;vertical-align:middle}
+  .heatmap-rating{display:flex;width:100%;min-height:44px;align-items:center;justify-content:center;text-align:center;border:1px solid rgba(31,41,55,.08);border-radius:8px;padding:8px 9px;font-size:12px;font-weight:800;line-height:1.25}
+  button.heatmap-rating{font-family:inherit;cursor:help}
+  button.heatmap-rating:hover,button.heatmap-rating:focus-visible{outline:3px solid rgba(36,74,99,.24);outline-offset:2px}
+  .heatmap-missing{display:flex;min-height:44px;align-items:center;justify-content:center;color:#98a2b3;background:#fafafa;border:1px dashed #e4e7ec;border-radius:8px}
+  .heatmap-name{font-weight:800;color:var(--accent);line-height:1.35}
+  .heatmap-name .viewed-marker{margin-left:5px}
+  .feasibility-controls{display:flex;justify-content:flex-end;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 12px}
+  .feasibility-scroll-controls{display:flex;gap:6px;align-items:center}
+  .feasibility-scroll-btn{appearance:none;border:1px solid #cfd8df;background:#fff;padding:7px 10px;border-radius:8px;color:var(--accent);font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+  .feasibility-scroll-btn:hover{background:var(--accent2)}
+  .feasibility-scroll-btn:focus-visible{outline:3px solid rgba(36,74,99,.26);outline-offset:2px}
+  .feasibility-table{min-width:1180px;table-layout:auto}
+  .feasibility-table th{position:sticky;top:0;z-index:3;text-align:center;vertical-align:bottom;min-width:150px;max-width:230px;white-space:normal;line-height:1.3}
+  .feasibility-table th:first-child,.feasibility-table td:first-child{position:sticky;left:0;z-index:4;text-align:left;min-width:260px;max-width:340px;background:#fff;border-right:1px solid var(--line)}
+  .feasibility-table th:first-child{z-index:5;background:#fafafa}
+  .feasibility-table tr:hover td{background:#fbfcfd}
+  .feasibility-table tr:hover td:first-child{background:#fbfcfd}
+  .feasibility-table .feasibility-overall{border-left:3px solid #cbd5dc}
+  .feasibility-cell{padding:8px 9px;text-align:center;vertical-align:middle;min-width:150px}
+  .feasibility-text-cell{min-width:260px;max-width:340px;text-align:left}
+  .feasibility-group-label{display:block;margin-bottom:5px;color:#98a2b3;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+  .feasibility-text-inline{font-size:12px;line-height:1.45;color:var(--ink);white-space:pre-wrap;overflow-wrap:anywhere}
   tr.instrument-row{cursor:pointer} tr.instrument-row:hover{background:#fbfcfd}.name{font-weight:700;color:var(--accent)}.acronym{color:var(--muted);font-weight:500}
   .badge{display:inline-block;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:700;background:#f1f3f5;color:#495057}.b-retained{background:var(--ok);color:#23613b}.b-review{background:var(--warn);color:#7a5a00}.b-identified{background:var(--info);color:#285ea8}
   .badge-rationale{appearance:none;border:0;font-family:inherit;line-height:1.2;cursor:help;display:inline-flex;align-items:center;gap:5px}
   .badge-rationale:hover,.badge-rationale:focus-visible{outline:2px solid rgba(36,74,99,.30);outline-offset:2px}
-  .badge-info-icon{font-size:11px;font-weight:800;opacity:.78}
   .rationale-popover{position:fixed;inset:auto;margin:0;z-index:10000;width:min(390px,calc(100vw - 28px));padding:13px 15px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 14px 38px rgba(0,0,0,.20);font-size:13px;line-height:1.5}
   .rationale-popover:not(:popover-open){display:none}
   .rationale-popover-title{display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:800;color:var(--ink);margin-bottom:6px}
@@ -92,32 +135,8 @@
   .long-section{margin-top:22px}.section-title{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:800;margin:0 0 8px}.long-section div{line-height:1.6}
   .empty{padding:30px;text-align:center;color:var(--muted)}
   @media(max-width:950px){.side-nav{display:none}}
-  @media(max-width:700px){h1{font-size:28px}.meta{align-items:flex-start;flex-direction:column}.detail-grid{grid-template-columns:1fr}.detail-grid dt{margin-top:10px}.team-logo{width:78px;height:78px}.modal-logo{width:68px;height:68px}.modal-head{padding:14px}.modal-head-actions{gap:4px}.copy-link{padding:7px 8px;font-size:11px}.modal-navigation{grid-template-columns:1fr 1.5fr 1fr;padding:10px 10px;gap:7px}.modal-navigation .btn{min-width:0;padding:9px 7px;font-size:12px}.record-position{font-size:11px}.record-jump{font-size:12px;padding:7px 8px}.keyboard-hints{display:none}.viewed-marker{font-size:9px;padding:2px 5px}.back-results{font-size:12px}}
-  .reb-meta-actions{display:flex;align-items:center;justify-content:flex-end;gap:13px;flex-wrap:wrap}
-  @media(max-width:700px){.reb-meta-actions{justify-content:flex-start}}
-  /* Linked overview, domain match and feasibility comparison views. */
-  .view-tabs{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:20px 0 14px;border-bottom:1px solid #cdd9e1}
-  .view-tab{appearance:none;border:1px solid transparent;border-bottom:3px solid transparent;border-radius:8px 8px 0 0;background:transparent;color:#52697c;padding:11px 17px;margin-bottom:-1px;font:inherit;font-size:14px;font-weight:750;cursor:pointer}
-  .view-tab:hover{background:#ecf3f7;color:#173b52}
-  .view-tab[aria-selected="true"]{color:#173b52;background:#fff;border-color:#d5e0e8;border-bottom-color:#244a63}
-  .view-tab:focus-visible{outline:3px solid #7eabbf;outline-offset:2px}
-  .view-panel[hidden]{display:none!important}
-  .view-description{margin:0 0 13px;color:#536477;font-size:14px;line-height:1.6}
-  .assessment-legend{display:flex;align-items:center;gap:9px 12px;flex-wrap:wrap;margin:0 0 15px;font-size:12px;color:#5b6b7c}
-  .assessment-legend strong{color:#34465a}
-  .assessment-legend .badge{vertical-align:middle}
-  .assessment-table{width:max-content;min-width:100%;table-layout:auto}
-  .assessment-table th{min-width:150px;vertical-align:bottom}
-  .assessment-table th:first-child,.assessment-table td:first-child{position:sticky;left:0;z-index:2;min-width:215px;max-width:320px;background:#fff;box-shadow:1px 0 0 var(--line)}
-  .assessment-table th:first-child{z-index:3;background:#f5f8fa}
-  .assessment-table tr:hover td:first-child{background:#f4f8fb}
-  .assessment-table td{max-width:380px;min-width:155px}
-  .assessment-table .assessment-long-col{min-width:260px;max-width:390px}
-  .assessment-table .assessment-open-text{white-space:pre-line;overflow-wrap:anywhere}
-  .assessment-table .assessment-empty-value{color:#98a2b3}
-  .assessment-table tr.instrument-row:focus-visible{outline:2px solid #4d829f;outline-offset:-2px}
-  .assessment-empty{background:#fff;border:1px solid var(--line);border-radius:11px;padding:22px 24px;color:var(--muted);line-height:1.6}
-  @media(max-width:700px){.view-tab{padding:9px 11px;font-size:12px}.assessment-table th:first-child,.assessment-table td:first-child{min-width:175px;max-width:220px}}
+  @media(max-width:700px){.view-actions{justify-content:flex-start}h1{font-size:28px}.meta{align-items:flex-start;flex-direction:column}.view-bar{align-items:flex-start;flex-direction:column}.view-toggle{width:100%;overflow-x:auto}.view-toggle-btn{flex:1;padding:9px 8px;font-size:12px;white-space:nowrap}.heatmap-help{font-size:12px}.heatmap-table th:first-child,.heatmap-table td:first-child,.feasibility-table th:first-child,.feasibility-table td:first-child{min-width:205px;max-width:240px}.feasibility-controls{align-items:flex-start;flex-direction:column}.feasibility-scroll-controls{width:100%}.feasibility-scroll-btn{flex:1}.detail-grid{grid-template-columns:1fr}.detail-grid dt{margin-top:10px}.team-logo{width:78px;height:78px}.modal-logo{width:68px;height:68px}.modal-head{padding:14px}.modal-head-actions{gap:4px}.copy-link{padding:7px 8px;font-size:11px}.modal-navigation{grid-template-columns:1fr 1.5fr 1fr;padding:10px 10px;gap:7px}.modal-navigation .btn{min-width:0;padding:9px 7px;font-size:12px}.record-position{font-size:11px}.record-jump{font-size:12px;padding:7px 8px}.keyboard-hints{display:none}.viewed-marker{font-size:9px;padding:2px 5px}.back-results{font-size:12px}}
+
   /* Printing: tables in landscape, individual instrument records in portrait. */
   .print-document-heading,.instrument-print-sheet{display:none}
   .print-current-view,.print-instrument-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap}
@@ -127,12 +146,10 @@
   .print-current-view svg,.print-instrument-button svg{flex:none}
   @page{size:landscape;margin:10mm 9mm 12mm}
   @media print{
-    .viewed-marker,.image-enlarge-hint{display:none!important}
     html,body{height:auto!important;overflow:visible!important;margin:0!important;padding:0!important;background:#fff!important;color:#1f2937!important;
       -webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-    header,.notice,.toolbar,.meta,.footerbar,.page-logo-wrap,.view-tabs,.view-description,.assessment-legend,#dialog,#imageLightbox,#rationalePopover{display:none!important}
-    .view-panel[hidden]{display:none!important}
-    .view-panel:not([hidden]){display:block!important}
+    header,.notice,.toolbar,.meta,.view-bar,.footerbar,.page-logo-wrap,#dialog,#imageLightbox,#rationalePopover,
+    .feasibility-controls,.feasibility-scroll-controls{display:none!important}
     main{margin:0!important;padding:0!important}
     main>.wrap{max-width:none!important;width:100%!important;margin:0!important;padding:0!important}
     .print-document-heading{display:block!important;border-bottom:2px solid #315f78;padding:0 0 8px;margin:0 0 12px;break-after:avoid}
@@ -140,9 +157,11 @@
     .print-document-heading h2{margin:0 0 4px;font-size:18px;line-height:1.2;color:#173b52}
     .print-document-heading .print-meta{display:flex;gap:5px 13px;flex-wrap:wrap;color:#52697b;font-size:10px;line-height:1.35}
     .print-document-heading .print-filter{font-weight:700}
-    .table-card,.table-wrap{height:auto!important;max-height:none!important;max-width:none!important;overflow:visible!important;box-shadow:none!important;border-radius:0!important}
+    #standardView[hidden],#heatmapView[hidden],#feasibilityView[hidden]{display:none!important}
+    .table-card,.table-wrap,.feasibility-table-wrap{height:auto!important;max-height:none!important;max-width:none!important;overflow:visible!important;box-shadow:none!important;border-radius:0!important}
     .table-card{border:0!important}
-    table{width:100%!important;min-width:0!important;max-width:100%!important;table-layout:fixed!important;border-collapse:collapse!important}
+    #standardView,#heatmapView,#feasibilityView{width:100%!important;max-width:none!important}
+    table,.heatmap-table,.feasibility-table{width:100%!important;min-width:0!important;max-width:100%!important;table-layout:fixed!important;border-collapse:collapse!important}
     table thead{display:table-header-group!important}
     table tbody{display:table-row-group!important}
     table tr{break-inside:avoid-page;page-break-inside:avoid}
@@ -150,10 +169,22 @@
       min-width:0!important;max-width:none!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important;
       padding:5px 5px!important;font-size:9px!important;line-height:1.35!important;border-color:#ccd7df!important;vertical-align:top!important}
     table th{font-weight:800!important;letter-spacing:0!important;text-transform:none!important;background:#eaf1f5!important;color:#244257!important;border-bottom:1px solid #97aabb!important}
-    .assessment-table th:first-child,.assessment-table td:first-child{position:static!important;box-shadow:none!important}
-    .assessment-table .assessment-long-col{min-width:0!important;max-width:none!important}
-    .assessment-table .assessment-open-text{white-space:pre-line!important}
+    .heatmap-table th:first-child,.heatmap-table td:first-child{width:24%!important}
+    .feasibility-table th:first-child,.feasibility-table td:first-child{width:20%!important}
+    .heatmap-rating,.heatmap-missing{min-height:0!important;height:auto!important;padding:4px 3px!important;font-size:8.5px!important;border-radius:4px!important;box-shadow:none!important}
+    .heatmap-table .heatmap-overall{border-left:3px solid #315f78!important}
+    .heatmap-table th.heatmap-overall{background:#e2eff8!important}
+    .heatmap-table td.heatmap-overall{background:#eff6fa!important}
+    .heatmap-legend{font-size:9px!important;gap:4px 9px!important;break-after:avoid!important}
+    .heatmap-legend-swatch{width:11px!important;height:11px!important}
     .badge{font-size:8.5px!important;padding:3px 5px!important;line-height:1.25!important;box-shadow:none!important}
+    .viewed-marker,.image-enlarge-hint{display:none!important}
+    .feasibility-table th,.feasibility-table td{font-size:8px!important;padding:4px 4px!important}
+    .feasibility-table .feasibility-cell{min-width:0!important;max-width:none!important}
+    .feasibility-table .feasibility-text-cell{min-width:0!important;max-width:none!important;width:auto!important}
+    .feasibility-table tbody tr{break-inside:auto;page-break-inside:auto}
+    .feasibility-text-inline{font-size:8px!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important}
+    .feasibility-group-label{font-size:7px!important}
     .instrument-record-link,.resource-link{color:#244a63!important;text-decoration:none!important}
     a[href]::after{content:none!important}
     /* The instrument sheet is only visible when printing an open instrument. */
@@ -207,64 +238,55 @@
     <div><label for="search">Search instruments</label><input id="search" placeholder="Search instrument information…" /></div>
   </div>
 
-  <div class="meta"><div><strong id="count">0</strong> instruments shown</div><div class="reb-meta-actions">
-  <button class="btn print-current-view" id="printCurrentView" type="button" title="Print this table or save it as PDF"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/><path d="M18 11h.01"/></svg> Print current view</button>
-  <span>Database version: <strong>Prototype 0.1</strong> · Updated October 2026</span>
-</div></div>
+  <div class="meta"><div><strong id="count">0</strong> instruments shown</div><div>Database version: <strong>Prototype 0.1</strong> · Updated October 2026</div></div>
 
-  <nav class="view-tabs" role="tablist" aria-label="Instrument database views">
-    <button class="view-tab" id="tab-overview" type="button" role="tab" aria-controls="overviewPanel" aria-selected="true" tabindex="0" data-view="overview">Overview</button>
-    <button class="view-tab" id="tab-domain-match" type="button" role="tab" aria-controls="domainMatchPanel" aria-selected="false" tabindex="-1" data-view="domain-match">Domain Match</button>
-    <button class="view-tab" id="tab-feasibility" type="button" role="tab" aria-controls="feasibilityPanel" aria-selected="false" tabindex="-1" data-view="feasibility">Feasibility</button>
-  </nav>
+  <div class="view-bar">
+    <div class="view-toggle" role="group" aria-label="Results view">
+      <button type="button" class="view-toggle-btn" id="standardViewBtn" aria-pressed="true">Standard view</button>
+      <button type="button" class="view-toggle-btn" id="heatmapViewBtn" aria-pressed="false">Domain Match</button>
+      <button type="button" class="view-toggle-btn" id="feasibilityViewBtn" aria-pressed="false">Feasibility</button>
+    </div>
+    <div class="view-actions">
+      <div class="heatmap-help" id="viewHelp">Browse the summary table, then select an instrument to open its full record.</div>
+      <button type="button" class="btn print-current-view" id="printCurrentView" title="Print or save the selected comparison view as PDF"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/><path d="M18 11h.01"/></svg> Print current view</button>
+    </div>
+  </div>
 
-  <section class="print-document-heading" id="printDocumentHeading" aria-label="Printed table title">
+  <section class="print-document-heading" id="printDocumentHeading" aria-label="Printed view title">
     <div class="print-kicker">SAH HOPE · aSAH Measurement Instrument Database</div>
     <h2 id="printViewTitle">Rebleeding — Overview</h2>
     <div class="print-meta"><span id="printViewCount"></span><span id="printFilterSummary" class="print-filter"></span><span id="printGeneratedDate"></span></div>
   </section>
 
+  <div id="standardView" class="table-card"><div class="table-wrap"><table>
+    <thead><tr id="tableHead"></tr></thead>
+    <tbody id="tbody"></tbody>
+  </table><div id="empty" class="empty" hidden>No instruments match the selected filters.</div></div></div>
 
-  <section id="overviewPanel" class="view-panel" role="tabpanel" aria-labelledby="tab-overview">
-    <div class="table-card"><div class="table-wrap"><table>
-      <thead><tr id="tableHead"></tr></thead>
-      <tbody id="tbody"></tbody>
-    </table><div id="empty" class="empty" hidden>No instruments match the selected filters.</div></div></div>
-  </section>
+  <div id="heatmapView" hidden>
+    <div id="heatmapLegend" class="heatmap-legend" aria-label="Domain Match rating legend"></div>
+    <div class="table-card"><div class="table-wrap"><table class="heatmap-table">
+      <thead><tr id="heatmapHead"></tr></thead>
+      <tbody id="heatmapBody"></tbody>
+    </table><div id="heatmapEmpty" class="empty" hidden></div></div></div>
+  </div>
 
-  <section id="domainMatchPanel" class="view-panel" role="tabpanel" aria-labelledby="tab-domain-match" hidden>
-    <p class="view-description">Compare Domain Match assessments across the currently filtered Rebleeding instruments. Hover, focus, or select a coloured rating to view its rationale.</p>
-    <div class="assessment-legend" aria-label="Domain Match rating guide">
-      <strong>Rating guide:</strong>
-      <span class="badge" style="background:#e8f5ee;color:#23613b">Good</span>
-      <span class="badge" style="background:#fff4c8;color:#7b5900">Partially (somewhat good)</span>
-      <span class="badge" style="background:#ffead8;color:#98510e">Partially (somewhat poor)</span>
-      <span class="badge" style="background:#fde8e8;color:#9b2c2c">Poor</span>
-      <span class="badge" style="background:#fff;color:#64748b;border:1px solid #d0d5dd">Unable to say</span>
+  <div id="feasibilityView" hidden>
+    <div class="feasibility-controls">
+      <div class="feasibility-scroll-controls" aria-label="Horizontal table scrolling">
+        <button type="button" class="feasibility-scroll-btn" id="feasibilityScrollLeft">← Scroll left</button>
+        <button type="button" class="feasibility-scroll-btn" id="feasibilityScrollRight">Scroll right →</button>
+      </div>
     </div>
-    <div id="domainMatchEmpty" class="assessment-empty" hidden></div>
-    <div id="domainMatchTableCard" class="table-card"><div class="table-wrap"><table class="assessment-table" id="domainMatchTable">
-      <thead><tr id="domainMatchHead"></tr></thead><tbody id="domainMatchBody"></tbody>
-    </table></div></div>
-  </section>
-
-  <section id="feasibilityPanel" class="view-panel" role="tabpanel" aria-labelledby="tab-feasibility" hidden>
-    <p class="view-description">Compare feasibility ratings and open-text fields across instruments. Scroll horizontally to see additional columns. Hover, focus, or select a coloured rating to view its classification or rationale.</p>
-    <div class="assessment-legend" aria-label="Feasibility rating guide">
-      <strong>Rating guide:</strong>
-      <span class="badge" style="background:#e8f5ee;color:#23613b">0 · Green</span><span>Practical advantage / manageable requirement</span>
-      <span class="badge" style="background:#fff2d7;color:#875600">1 · Amber</span><span>Additional requirement or concern</span>
-      <span class="badge" style="background:#fde8e8;color:#9b2c2c">2 · Red</span><span>Substantial obstacle</span>
-      <span class="badge" style="background:#fff;color:#64748b;border:1px solid #d0d5dd">U · White</span><span>Insufficient or conflicting information</span>
-    </div>
-    <div id="feasibilityEmpty" class="assessment-empty" hidden></div>
-    <div id="feasibilityTableCard" class="table-card"><div class="table-wrap"><table class="assessment-table" id="feasibilityTable">
-      <thead><tr id="feasibilityHead"></tr></thead><tbody id="feasibilityBody"></tbody>
-    </table></div></div>
-  </section>
+    <!-- Feasibility legend intentionally omitted; the comparison table follows. -->
+    <div class="table-card"><div class="table-wrap feasibility-table-wrap" id="feasibilityTableWrap"><table class="feasibility-table">
+      <thead><tr id="feasibilityHead"></tr></thead>
+      <tbody id="feasibilityBody"></tbody>
+    </table><div id="feasibilityEmpty" class="empty" hidden></div></div></div>
+  </div>
 
   <div class="footerbar">
-    <div style="color:var(--muted);font-size:14px">Tip: select any row to open the full instrument record.</div>
+    <div id="viewTip" style="color:var(--muted);font-size:14px">Tip: select any row to open the full instrument record.</div>
     <div><button class="btn" id="reset">Reset filters</button> <button class="btn" id="clearViewed">Clear viewed markers</button> <button class="btn primary" id="download">Download current dataset (.csv)</button></div>
   </div>
 
@@ -287,8 +309,8 @@
       <h2 id="mName" style="margin:0;font-size:25px"></h2>
     </div>
     <div class="modal-head-actions">
-      <button class="copy-link" id="copyRecordLink" type="button">Copy link</button>
       <button class="copy-link print-instrument-button" id="printInstrument" type="button" title="Print this instrument or save it as PDF"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/><path d="M18 11h.01"/></svg> Print</button>
+      <button class="copy-link" id="copyRecordLink" type="button">Copy link</button>
       <button class="close" id="close" aria-label="Close" title="Close">×</button>
     </div>
   </div>
@@ -324,7 +346,7 @@
   <div id="rationalePopoverText" class="rationale-popover-text"></div>
 </div>
 
-<!-- Print-only copy of the selected instrument record, outside the modal so long content is never clipped. -->
+<!-- Separate print-only instrument record; avoids clipping by the scrollable modal. -->
 <article id="instrumentPrintSheet" class="instrument-print-sheet" aria-label="Printable instrument record"></article>
 
 <script>
@@ -333,12 +355,14 @@ let instrumentHeaders = [];
 let fields = [];
 let filterControls = {};
 let badgeStyles = [];
-let activeView = 'overview';
 let currentRecordId = null;
 let originatingRecordId = null;
 let highlightedRecordId = null;
 let resultsScrollY = 0;
+let currentView = 'standard';
 const VIEWED_KEY = 'asah-rebleeding-viewed-instruments';
+const RESULTS_VIEW_KEY = 'asah-rebleeding-results-view';
+const VIEW_SLUGS = {standard:'standard',heatmap:'domain-match',feasibility:'feasibility'};
 
 function parseCSV(text) {
   const rows = []; let row = [], field = '', quoted = false;
@@ -449,7 +473,8 @@ function showRationale(button,{pinned=false}={}){
   rationalePopoverText.textContent=rationale;
 
   const label=String(button.dataset.rationaleLabel || '').trim();
-  rationalePopoverTitle.textContent=label ? `Rationale: ${label}` : 'Rationale';
+  const customTitle=String(button.dataset.rationaleTitle || '').trim();
+  rationalePopoverTitle.textContent=customTitle || (label ? `Rationale: ${label}` : 'Rationale');
 
   openRationalePopover();
   button.setAttribute('aria-expanded','true');
@@ -555,6 +580,30 @@ function instrumentDisplayName(record){
   const acronym=String(record.acronym || '').trim();
   return acronym ? `${name} (${acronym})` : name;
 }
+// Shareable view URLs are independent of the browser's saved last-used view.
+// The existing ?instrument=ID deep links can also be combined with ?view=...
+function viewFromUrl(){
+  const value=new URL(window.location.href).searchParams.get('view');
+  if(value==='domain-match' || value==='heatmap') return 'heatmap';
+  if(value==='feasibility') return 'feasibility';
+  if(value==='standard') return 'standard';
+  return null;
+}
+
+function viewUrl(view=currentView,{keepInstrument=false}={}){
+  const url=new URL(window.location.href);
+  url.searchParams.set('view',VIEW_SLUGS[view] || VIEW_SLUGS.standard);
+  if(!keepInstrument) url.searchParams.delete('instrument');
+  return url;
+}
+
+function updateBrowserViewUrl(view,{replace=false,keepInstrument=false}={}){
+  const url=viewUrl(view,{keepInstrument});
+  if(url.href===window.location.href) return;
+  if(replace) history.replaceState(null,'',url);
+  else history.pushState(null,'',url);
+}
+
 function recordUrl(id){
   const url=new URL(window.location.href);
   url.searchParams.set('instrument',id);
@@ -576,10 +625,9 @@ function safeCssColor(value, fallback){
   return fallback;
 }
 
-function badge(fieldName,value,record,fallbackStyle=null,rationaleOverride=''){
-  const text=String(value || '').trim();
+function badgeColours(fieldName,value){
   const fieldKey=String(fieldName || '').trim().toLowerCase();
-  const valueKey=text.toLowerCase();
+  const valueKey=String(value || '').trim().toLowerCase();
 
   const specific=badgeStyles.find(style =>
     String(style.field || '').trim().toLowerCase()===fieldKey &&
@@ -592,22 +640,28 @@ function badge(fieldName,value,record,fallbackStyle=null,rationaleOverride=''){
   );
 
   const match=specific || wildcard;
-  const background=safeCssColor(match?.background,fallbackStyle?.background || '#f1f3f5');
-  const colour=safeCssColor(match?.text,fallbackStyle?.color || '#495057');
-  const border=fallbackStyle?.border && !match ? `;border:${fallbackStyle.border}` : '';
+  return {
+    background:safeCssColor(match?.background,'#f1f3f5'),
+    colour:safeCssColor(match?.text,'#495057')
+  };
+}
+
+function badge(fieldName,value,record){
+  const text=String(value || '').trim();
+  const {background,colour}=badgeColours(fieldName,text);
 
   // Convention: domain_match -> domain_match_rationale.
   // This also works generically for any badge field.
   const rationaleField=`${fieldName}_rationale`;
-  const rationale=String(record?.[rationaleField] || rationaleOverride || '').trim();
+  const rationale=String(record?.[rationaleField] || '').trim();
 
   if(!rationale){
-    return `<span class="badge" style="background:${escapeHTML(background)};color:${escapeHTML(colour)}${border}">${escapeHTML(text)}</span>`;
+    return `<span class="badge" style="background:${escapeHTML(background)};color:${escapeHTML(colour)}">${escapeHTML(text)}</span>`;
   }
 
   return `<button type="button"
       class="badge badge-rationale"
-      style="background:${escapeHTML(background)};color:${escapeHTML(colour)}${border}"
+      style="background:${escapeHTML(background)};color:${escapeHTML(colour)}"
       data-rationale="${escapeHTML(rationale)}"
       data-rationale-label="${escapeHTML(text)}"
       aria-haspopup="dialog"
@@ -649,154 +703,156 @@ function uniqueValues(fieldName){
   return [...new Set(instruments.map(x=>x[fieldName]).filter(v=>String(v || '').trim() !== ''))].sort((a,b)=>a.localeCompare(b));
 }
 
-// An optional `view` (or `assessment_view`) column in fields.csv explicitly
-// assigns a field to a comparison tab. Otherwise commonly used field names
-// are recognised; rationales remain accessible from their rating badges.
-function assessmentViewForField(field){
-  const explicit=String(field.view || field.assessment_view || field.tab || '').trim().toLowerCase().replace(/[\s_]+/g,'-');
-  if(explicit){
-    if(['domain','domain-match','domainmatch'].includes(explicit)) return 'domain-match';
-    if(['feasibility','feasible'].includes(explicit)) return 'feasibility';
-    return null;
-  }
-  const key=String(field.field || '').toLowerCase().replace(/[\s-]+/g,'_');
-  const label=String(field.label || '').toLowerCase();
-  if(/(?:^|_)domain_match(?:_|$)|^domainmatch(?:_|$)|^match_(?:rating|score|assessment|overall)/.test(key)
-    || /domain\s+match/.test(label)) return 'domain-match';
-  if(/(?:^|_)feasib(?:ility)?(?:_|$)|^feas_/.test(key) || /feasib(?:ility)?/i.test(label)) return 'feasibility';
-  const familiar=['ease_of_use','ease_of_administration','time_required','time_to_complete','administration_time',
-    'equipment','equipment_required','special_equipment','training','training_required','cost','costs',
-    'patient_burden','burden','patient_risk','risks','risk_to_patient','safety','resource_requirements'];
-  if(familiar.includes(key) || familiar.some(root=>key.startsWith(root+'_'))) return 'feasibility';
-  return null;
+function isOverallHeatmapField(field){
+  const role=String(field?.heatmap_role || '').trim().toLowerCase();
+  const name=String(field?.field || '').trim().toLowerCase();
+  return role==='overall' || name==='domain_match' || name==='domain_match_overall' || name.endsWith('_overall');
 }
-function assessmentFieldsFor(view){
-  return sortedFields(f=>assessmentViewForField(f)===view &&
-    (!String(f.field || '').toLowerCase().endsWith('_rationale') ||
-      ['domain-match','feasibility'].includes(String(f.view || f.assessment_view || f.tab || '').trim().toLowerCase().replace(/[\s_]+/g,'-'))) &&
-    !['image','primary'].includes(f.format));
-}
-function ratingStyle(value,view){
-  const v=String(value || '').trim().toLowerCase().replace(/[\s_/-]+/g,' ');
-  const white={background:'#fff',color:'#64748b',border:'1px solid #d0d5dd'};
-  if(['u','unable','unable to say','unable to judge','unknown','no evidence','insufficient evidence'].includes(v)) return white;
-  if(['not assessed','not evaluated','n a','na'].includes(v)) return {background:'#dfe3e8',color:'#344054'};
-  if(view==='feasibility'){
-    if(/^0(?:\s|$)/.test(v) || ['green','manageable'].includes(v)) return {background:'#e8f5ee',color:'#23613b'};
-    if(/^1(?:\s|$)/.test(v) || ['amber','yellow'].includes(v)) return {background:'#fff2d7',color:'#875600'};
-    if(/^2(?:\s|$)/.test(v) || v==='red') return {background:'#fde8e8',color:'#9b2c2c'};
-  }
-  if(['good','yes','green'].includes(v)) return {background:'#e8f5ee',color:'#23613b'};
-  if(v.includes('somewhat good') || v.includes('partially good') || v.includes('partial good')) return {background:'#fff4c8',color:'#7b5900'};
-  if(v.includes('somewhat poor') || v.includes('partially poor') || v.includes('partial poor')) return {background:'#ffead8',color:'#98510e'};
-  if(v==='poor' || v==='no' || v==='red') return {background:'#fde8e8',color:'#9b2c2c'};
-  if(v.startsWith('partial') || v==='amber' || v==='yellow') return {background:'#fff4c8',color:'#7b5900'};
-  return null;
-}
-function feasibilityRatingDescription(value){
-  const v=String(value || '').trim().toLowerCase().replace(/[\s_/-]+/g,' ');
-  if(/^0(?:\s|$)/.test(v) || v==='green') return '0 Green: practical advantage or manageable requirement.';
-  if(/^1(?:\s|$)/.test(v) || ['amber','yellow'].includes(v)) return '1 Amber: additional requirement or concern.';
-  if(/^2(?:\s|$)/.test(v) || v==='red') return '2 Red: documented substantial obstacle.';
-  if(['u','unable','unable to say','unable to judge','unknown','no evidence','insufficient evidence'].includes(v))
-    return 'U White: missing or conflicting information prevents assessment.';
-  return '';
-}
-function assessmentCell(field,record,view){
-  const value=String(record[field.field] || '').trim();
-  if(!value) return '<span class="assessment-empty-value">—</span>';
-  if(field.format==='url') return formatValue(field,record,'table');
-  if(field.format==='longtext') return `<span class="assessment-open-text">${escapeHTML(value)}</span>`;
-  const fallback=ratingStyle(value,view);
-  if(field.format==='badge' || fallback) return badge(field.field,value,record,fallback,view==='feasibility' ? feasibilityRatingDescription(value) : '');
-  return `<span class="assessment-open-text">${escapeHTML(value)}</span>`;
-}
-function wireInstrumentTable(root){
-  root.querySelectorAll('tr.instrument-row').forEach(row=>{
-    row.addEventListener('click',event=>{
-      if(event.target.closest('a,button')) return;
-      openRecord(row.dataset.recordId,{fromResults:true});
-    });
-    row.addEventListener('keydown',event=>{
-      if((event.key==='Enter' || event.key===' ') && !event.target.closest('a,button')){
-        event.preventDefault();openRecord(row.dataset.recordId,{fromResults:true});
-      }
-    });
+
+function getHeatmapFields(){
+  const explicit=fields.filter(f=>yes(f.heatmap) && !String(f.field || '').toLowerCase().endsWith('_rationale'));
+  const selected=explicit.length ? explicit : fields.filter(f=>{
+    const name=String(f.field || '').trim().toLowerCase();
+    if(!name || name.endsWith('_rationale')) return false;
+    return (name==='domain_match' || name.startsWith('domain_match_')) && String(f.format || '').trim().toLowerCase()==='badge';
   });
-  root.querySelectorAll('a.instrument-record-link').forEach(link=>{
-    link.addEventListener('click',event=>{
-      event.stopPropagation();
-      if(event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button!==0) return;
-      event.preventDefault();openRecord(link.dataset.recordId,{fromResults:true});
-    });
+
+  return [...selected].sort((a,b)=>{
+    const aOverall=isOverallHeatmapField(a), bOverall=isOverallHeatmapField(b);
+    if(aOverall!==bOverall) return aOverall ? 1 : -1;
+    const ao=Number(a.heatmap_order || a.display_order) || 9999;
+    const bo=Number(b.heatmap_order || b.display_order) || 9999;
+    return ao-bo;
   });
-  root.querySelectorAll('a:not(.instrument-record-link)').forEach(link=>link.addEventListener('click',event=>event.stopPropagation()));
 }
-function renderAssessmentView(view,rows){
-  const prefix=view==='domain-match' ? 'domainMatch' : 'feasibility';
-  const head=document.getElementById(`${prefix}Head`);
-  const body=document.getElementById(`${prefix}Body`);
-  const card=document.getElementById(`${prefix}TableCard`);
-  const empty=document.getElementById(`${prefix}Empty`);
-  const compared=assessmentFieldsFor(view);
-  if(!compared.length || !rows.length){
-    card.hidden=true;empty.hidden=false;
-    empty.textContent=!compared.length
-      ? `No ${view==='domain-match' ? 'Domain Match' : 'Feasibility'} assessment fields are configured in data/fields.csv and data/instruments.csv yet. Add the relevant columns and, if needed, assign their view in fields.csv.`
-      : 'No instruments match the current search and filters.';
-    head.replaceChildren();body.replaceChildren();return;
+
+function heatmapRating(field,record){
+  const value=String(record?.[field.field] || '').trim();
+  if(!value) return '<span class="heatmap-missing" aria-label="No rating available">—</span>';
+
+  const {background,colour}=badgeColours(field.field,value);
+  const rationale=String(record?.[`${field.field}_rationale`] || '').trim();
+  const label=String(field.label || field.field || '').trim();
+  const common=`class="heatmap-rating${rationale ? ' badge-rationale' : ''}" style="background:${escapeHTML(background)};color:${escapeHTML(colour)}"`;
+
+  if(!rationale){
+    return `<span ${common}>${escapeHTML(value)}</span>`;
   }
-  empty.hidden=true;card.hidden=false;
-  head.innerHTML=`<th scope="col">Instrument</th>`+compared.map(f=>
-    `<th scope="col" class="${f.format==='longtext' ? 'assessment-long-col' : ''}">${escapeHTML(f.label || f.field)}</th>`).join('');
-  const primary=fields.find(f=>f.format==='primary') || fields.find(f=>f.field==='name');
-  const viewed=getViewedInstruments();
-  body.innerHTML=rows.map((record,index)=>{
-    const id=record.id || `row-${index}`;
-    const name=primary ? formatValue(primary,record,'table') : `<span class="name">${escapeHTML(instrumentDisplayName(record))}</span>`;
-    const classes=['instrument-row'];
-    if(viewed.has(id)) classes.push('viewed-row');
-    if(dialog && dialog.open && id===currentRecordId) classes.push('active-row');
-    if(id===highlightedRecordId) classes.push('return-highlight');
-    return `<tr class="${classes.join(' ')}" data-record-id="${escapeHTML(id)}" tabindex="0"><td>${name}</td>`+
-      compared.map(f=>`<td class="${f.format==='longtext' ? 'assessment-long-col' : ''}">${assessmentCell(f,record,view)}</td>`).join('')+'</tr>';
+
+  return `<button type="button" ${common}
+      data-rationale="${escapeHTML(rationale)}"
+      data-rationale-label="${escapeHTML(label)} — ${escapeHTML(value)}"
+      aria-haspopup="dialog"
+      aria-expanded="false"
+      title="View rationale">${escapeHTML(value)}</button>`;
+}
+
+function isOverallFeasibilityField(field){
+  const role=String(field?.feasibility_role || '').trim().toLowerCase();
+  const name=String(field?.field || '').trim().toLowerCase();
+  return role==='overall' || name==='feasibility' || name==='feasibility_overall' || name.endsWith('_overall_feasibility') || name.endsWith('_feasibility_overall');
+}
+
+function getFeasibilityFields(){
+  const explicit=fields.filter(f=>yes(f.feasibility) && !String(f.field || '').toLowerCase().endsWith('_rationale'));
+  const selected=explicit.length ? explicit : fields.filter(f=>{
+    const name=String(f.field || '').trim().toLowerCase();
+    if(!name || name.endsWith('_rationale')) return false;
+    return name==='feasibility' || name.startsWith('feasibility_');
+  });
+
+  // Show every configured field, including open-text and formerly detailed-only fields.
+  return [...selected].sort((a,b)=>{
+    const aOverall=isOverallFeasibilityField(a), bOverall=isOverallFeasibilityField(b);
+    if(aOverall!==bOverall) return aOverall ? 1 : -1;
+    const ao=Number(a.feasibility_order || a.display_order) || 9999;
+    const bo=Number(b.feasibility_order || b.display_order) || 9999;
+    return ao-bo;
+  });
+}
+
+function feasibilityValue(field,record){
+  const value=String(record?.[field.field] || '').trim();
+  if(!value) return '<span class="heatmap-missing" aria-label="No information available">—</span>';
+
+  if(String(field.format || '').trim().toLowerCase()==='badge'){
+    return heatmapRating(field,record);
+  }
+
+  if(String(field.format || '').trim().toLowerCase()==='url'){
+    return formatValue(field,record,'table');
+  }
+
+  // Show the entire value inline, with no preview or character limit.
+  return `<div class="feasibility-text-inline">${escapeHTML(value)}</div>`;
+}
+
+function buildFeasibilityHead(){
+  const head=document.getElementById('feasibilityHead');
+  if(!head) return;
+  head.innerHTML='<th scope="col">Instrument</th>';
+  getFeasibilityFields().forEach(field=>{
+    const th=document.createElement('th');
+    th.scope='col';
+    const group=String(field.feasibility_group || '').trim();
+    const label=String(field.label || field.field || '').trim();
+    th.innerHTML=group ? `<span class="feasibility-group-label">${escapeHTML(group)}</span>${escapeHTML(label)}` : escapeHTML(label);
+    th.title=group ? `${group}: ${label}` : label;
+    if(isOverallFeasibilityField(field)) th.classList.add('feasibility-overall');
+    head.appendChild(th);
+  });
+}
+
+function renderRatingLegend(legend,legendFields,rows){
+  const preferred=['good','partially good','partially / good','partially or with concerns','partially / with concerns','partially poor','poor','very easy','easy','moderate','difficult','very difficult','yes','no','unable to judge','no evidence'];
+  const values=[];
+  legendFields.forEach(field=>rows.forEach(record=>{
+    const value=String(record[field.field] || '').trim();
+    if(value && !values.some(existing=>existing.toLowerCase()===value.toLowerCase())) values.push(value);
+  }));
+  values.sort((a,b)=>{
+    const ai=preferred.indexOf(a.toLowerCase()), bi=preferred.indexOf(b.toLowerCase());
+    if(ai===-1 && bi===-1) return a.localeCompare(b);
+    if(ai===-1) return 1; if(bi===-1) return -1; return ai-bi;
+  });
+  legend.innerHTML=values.map(value=>{
+    const representative=legendFields.find(field=>rows.some(record=>String(record[field.field] || '').trim().toLowerCase()===value.toLowerCase())) || legendFields[0];
+    const {background,colour}=badgeColours(representative?.field || '*',value);
+    return `<span class="heatmap-legend-item"><span class="heatmap-legend-swatch" style="background:${escapeHTML(background)}" aria-hidden="true"></span><span style="color:${escapeHTML(colour)}">${escapeHTML(value)}</span></span>`;
   }).join('');
-  wireInstrumentTable(body);
+  legend.hidden=values.length===0;
 }
-function normalizeView(name){return ['overview','domain-match','feasibility'].includes(name) ? name : 'overview';}
-function setActiveView(name,{updateUrl=true}={}){
-  const view=normalizeView(name);
-  activeView=view;
-  hideRationale();
-  const ids={'overview':'overviewPanel','domain-match':'domainMatchPanel','feasibility':'feasibilityPanel'};
-  document.querySelectorAll('.view-tab').forEach(tab=>{
-    const selected=tab.dataset.view===view;
-    tab.setAttribute('aria-selected',String(selected));
-    tab.tabIndex=selected ? 0 : -1;
-  });
-  Object.entries(ids).forEach(([key,id])=>{
-    document.getElementById(id).hidden=key!==view;
-  });
-  if(updateUrl){
-    const url=new URL(window.location.href);
-    if(view==='overview') url.searchParams.delete('view');
-    else url.searchParams.set('view',view);
-    history.replaceState(null,'',url);
+
+function renderHeatmapLegend(heatFields,rows){
+  renderRatingLegend(document.getElementById('heatmapLegend'),heatFields,rows);
+}
+
+function setResultsView(view,{persist=true,urlMode=null,keepInstrument=false}={}){
+  currentView=['heatmap','feasibility'].includes(view) ? view : 'standard';
+  const standard=currentView==='standard';
+  const heatmap=currentView==='heatmap';
+  const feasibility=currentView==='feasibility';
+  document.getElementById('standardView').hidden=!standard;
+  document.getElementById('heatmapView').hidden=!heatmap;
+  document.getElementById('feasibilityView').hidden=!feasibility;
+  document.getElementById('standardViewBtn').setAttribute('aria-pressed',String(standard));
+  document.getElementById('heatmapViewBtn').setAttribute('aria-pressed',String(heatmap));
+  document.getElementById('feasibilityViewBtn').setAttribute('aria-pressed',String(feasibility));
+  document.getElementById('viewHelp').textContent=standard
+    ? 'Browse the summary table, then select an instrument to open its full record.'
+    : heatmap
+      ? 'This view provides a breakdown of our domain match assessment, showing how candidate instruments relate to the consensus definition of Rebleeding and any overall judgements.'
+      : 'Compare all feasibility ratings and open-text fields across instruments. Scroll horizontally to see additional columns. Hover, focus, or select a coloured rating to view a description of its classification.';
+  document.getElementById('viewTip').textContent=standard
+    ? 'Tip: select any row to open the full instrument record.'
+    : heatmap
+      ? 'Tip: select an instrument name to open its full record; coloured cells show domain match ratings.'
+      : 'Tip: use the scroll buttons or the horizontal scrollbar to move across feasibility columns; select an instrument name to open its full record.';
+  if(persist){
+    try{ localStorage.setItem(RESULTS_VIEW_KEY,currentView); }catch{}
   }
+  if(urlMode) updateBrowserViewUrl(currentView,{replace:urlMode==='replace',keepInstrument});
 }
-document.querySelectorAll('.view-tab').forEach(tab=>{
-  tab.addEventListener('click',()=>setActiveView(tab.dataset.view));
-  tab.addEventListener('keydown',event=>{
-    if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
-    event.preventDefault();
-    const tabs=[...document.querySelectorAll('.view-tab')];
-    let index=tabs.indexOf(tab);
-    if(event.key==='Home') index=0;
-    else if(event.key==='End') index=tabs.length-1;
-    else index=(index+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;
-    tabs[index].focus();tabs[index].click();
-  });
-});
 
 function buildInterface(){
   const toolbar=document.getElementById('toolbar');
@@ -816,7 +872,45 @@ function buildInterface(){
   });
 
   sortedFields(f=>yes(f.table)).forEach(f=>{const th=document.createElement('th');th.textContent=f.label || f.field;tableHead.appendChild(th)});
+
+  const heatmapHead=document.getElementById('heatmapHead');
+  heatmapHead.innerHTML='<th scope="col">Instrument</th>';
+  getHeatmapFields().forEach(f=>{
+    const th=document.createElement('th');
+    th.scope='col';
+    th.textContent=f.label || f.field;
+    th.title=f.label || f.field;
+    if(isOverallHeatmapField(f)) th.classList.add('heatmap-overall');
+    heatmapHead.appendChild(th);
+  });
+
+  document.getElementById('standardViewBtn').addEventListener('click',()=>setResultsView('standard',{urlMode:'push'}));
+  document.getElementById('heatmapViewBtn').addEventListener('click',()=>setResultsView('heatmap',{urlMode:'push'}));
+  document.getElementById('feasibilityViewBtn').addEventListener('click',()=>setResultsView('feasibility',{urlMode:'push'}));
+  document.getElementById('feasibilityScrollLeft').addEventListener('click',()=>document.getElementById('feasibilityTableWrap').scrollBy({left:-480,behavior:'smooth'}));
+  document.getElementById('feasibilityScrollRight').addEventListener('click',()=>document.getElementById('feasibilityTableWrap').scrollBy({left:480,behavior:'smooth'}));
+
+  buildFeasibilityHead();
+
+  let savedView='standard';
+  try{ savedView=localStorage.getItem(RESULTS_VIEW_KEY) || 'standard'; }catch{}
+  // An explicit ?view= link overrides localStorage; older URLs still use the saved tab.
+  // Canonicalize the address-bar URL so copying it always opens the visible tab.
+  setResultsView(viewFromUrl() || savedView,{urlMode:'replace',keepInstrument:true});
 }
+
+// Browser Back/Forward should follow tab changes, including URLs with instrument IDs.
+window.addEventListener('popstate',()=>{
+  if(!instruments.length) return;
+  setResultsView(viewFromUrl() || 'standard');
+  const requestedId=new URL(window.location.href).searchParams.get('instrument');
+  if(requestedId && instruments.some(record=>(record.id || '')===requestedId)){
+    if(currentRecordId!==requestedId) openRecord(requestedId,{fromUrl:true});
+  }else if(dialog.open){
+    highlightedRecordId=currentRecordId;
+    dialog.close();
+  }
+});
 
 function filteredRows(){
   const q=document.getElementById('search').value.trim().toLowerCase();
@@ -829,9 +923,21 @@ function filteredRows(){
 }
 
 function render(){
-  const rows=filteredRows(); const tableFields=sortedFields(f=>yes(f.table)); const tbody=document.getElementById('tbody');
+  const rows=filteredRows();
+  const tableFields=sortedFields(f=>yes(f.table));
+  const heatFields=getHeatmapFields();
+  const feasibilityFields=getFeasibilityFields();
+  const tbody=document.getElementById('tbody');
+  const heatmapBody=document.getElementById('heatmapBody');
+  const feasibilityBody=document.getElementById('feasibilityBody');
   const viewed=getViewedInstruments();
-  document.getElementById('count').textContent=rows.length; document.getElementById('empty').hidden=rows.length!==0;
+  const empty=document.getElementById('empty');
+  const heatmapEmpty=document.getElementById('heatmapEmpty');
+  const feasibilityEmpty=document.getElementById('feasibilityEmpty');
+
+  document.getElementById('count').textContent=rows.length;
+  empty.hidden=rows.length!==0;
+
   tbody.innerHTML=rows.map((record,index)=>{
     const id=record.id || `row-${index}`;
     const cells=tableFields.map(f=>`<td>${formatValue(f,record,'table')}</td>`).join('');
@@ -842,9 +948,96 @@ function render(){
     return `<tr class="${classes.join(' ')}" data-record-id="${escapeHTML(id)}" tabindex="0">${cells}</tr>`;
   }).join('');
 
-  wireInstrumentTable(tbody);
-  renderAssessmentView('domain-match',rows);
-  renderAssessmentView('feasibility',rows);
+  tbody.querySelectorAll('.instrument-row').forEach(r=>{
+    r.addEventListener('click',e=>{ if(e.target.closest('a') || e.target.closest('.badge-rationale')) return; openRecord(r.dataset.recordId,{fromResults:true}); });
+    r.addEventListener('keydown',e=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openRecord(r.dataset.recordId,{fromResults:true}); } });
+  });
+  tbody.querySelectorAll('.instrument-record-link').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.stopPropagation();
+      if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button!==0) return;
+      e.preventDefault(); openRecord(a.dataset.recordId,{fromResults:true});
+    });
+  });
+  tbody.querySelectorAll('a:not(.instrument-record-link)').forEach(a=>a.addEventListener('click',e=>e.stopPropagation()));
+
+  if(!heatFields.length){
+    heatmapBody.innerHTML='';
+    heatmapEmpty.hidden=false;
+    heatmapEmpty.textContent='Detailed Domain Match ratings are not yet available for this database.';
+    document.getElementById('heatmapLegend').hidden=true;
+  }else if(!rows.length){
+    heatmapBody.innerHTML='';
+    heatmapEmpty.hidden=false;
+    heatmapEmpty.textContent='No instruments match the selected filters.';
+    document.getElementById('heatmapLegend').hidden=true;
+  }else{
+    heatmapEmpty.hidden=true;
+    renderHeatmapLegend(heatFields,rows);
+    heatmapBody.innerHTML=rows.map((record,index)=>{
+      const id=record.id || `row-${index}`;
+      const primary=fields.find(f=>f.format==='primary') || fields.find(f=>f.field==='name');
+      const name=String(primary ? record[primary.field] : record.name || '').trim();
+      const acronym=String(record.acronym || '').trim();
+      const viewedMark=viewed.has(id) ? ' <span class="viewed-marker" title="Viewed">✓ Viewed</span>' : '';
+      const href=record.id ? recordUrl(record.id) : null;
+      const displayName=`${escapeHTML(name)}${acronym ? ` <span class="acronym">(${escapeHTML(acronym)})</span>` : ''}`;
+      const nameCell=href
+        ? `<a class="instrument-record-link heatmap-name" data-record-id="${escapeHTML(id)}" href="${escapeHTML(href.pathname + href.search + href.hash)}">${displayName}</a>${viewedMark}`
+        : `<span class="heatmap-name">${displayName}</span>${viewedMark}`;
+      const ratings=heatFields.map(field=>`<td class="heatmap-cell${isOverallHeatmapField(field) ? ' heatmap-overall' : ''}">${heatmapRating(field,record)}</td>`).join('');
+      return `<tr data-record-id="${escapeHTML(id)}"><td>${nameCell}</td>${ratings}</tr>`;
+    }).join('');
+
+    heatmapBody.querySelectorAll('.instrument-record-link').forEach(a=>{
+      a.addEventListener('click',e=>{
+        if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button!==0) return;
+        e.preventDefault();
+        openRecord(a.dataset.recordId,{fromResults:true});
+      });
+    });
+  }
+
+  buildFeasibilityHead();
+  if(!feasibilityFields.length){
+    feasibilityBody.innerHTML='';
+    feasibilityEmpty.hidden=false;
+    feasibilityEmpty.textContent='Feasibility fields are not yet configured for this database.';
+  }else if(!rows.length){
+    feasibilityBody.innerHTML='';
+    feasibilityEmpty.hidden=false;
+    feasibilityEmpty.textContent='No instruments match the selected filters.';
+  }else{
+    feasibilityEmpty.hidden=true;
+    feasibilityBody.innerHTML=rows.map((record,index)=>{
+      const id=record.id || `row-${index}`;
+      const primary=fields.find(f=>f.format==='primary') || fields.find(f=>f.field==='name');
+      const name=String(primary ? record[primary.field] : record.name || '').trim();
+      const acronym=String(record.acronym || '').trim();
+      const viewedMark=viewed.has(id) ? ' <span class="viewed-marker" title="Viewed">✓ Viewed</span>' : '';
+      const href=record.id ? recordUrl(record.id) : null;
+      const displayName=`${escapeHTML(name)}${acronym ? ` <span class="acronym">(${escapeHTML(acronym)})</span>` : ''}`;
+      const nameCell=href
+        ? `<a class="instrument-record-link heatmap-name" data-record-id="${escapeHTML(id)}" href="${escapeHTML(href.pathname + href.search + href.hash)}">${displayName}</a>${viewedMark}`
+        : `<span class="heatmap-name">${displayName}</span>${viewedMark}`;
+      const cells=feasibilityFields.map(field=>{
+        const isText=String(field.format || '').trim().toLowerCase()!=='badge';
+        const classes=['feasibility-cell'];
+        if(isText) classes.push('feasibility-text-cell');
+        if(isOverallFeasibilityField(field)) classes.push('feasibility-overall');
+        return `<td class="${classes.join(' ')}">${feasibilityValue(field,record)}</td>`;
+      }).join('');
+      return `<tr data-record-id="${escapeHTML(id)}"><td>${nameCell}</td>${cells}</tr>`;
+    }).join('');
+
+    feasibilityBody.querySelectorAll('.instrument-record-link').forEach(a=>{
+      a.addEventListener('click',e=>{
+        if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button!==0) return;
+        e.preventDefault();
+        openRecord(a.dataset.recordId,{fromResults:true});
+      });
+    });
+  }
 }
 
 document.getElementById('search').addEventListener('input',render);
@@ -1051,8 +1244,9 @@ document.addEventListener('keydown',e=>{
 function csvEscape(v){const s=String(v??'');return /[",\n]/.test(s)?`"${s.replaceAll('"','""')}"`:s}
 document.getElementById('download').onclick=()=>{
   const csv=[instrumentHeaders.join(','),...instruments.map(x=>instrumentHeaders.map(k=>csvEscape(x[k])).join(','))].join('\n');
-  const a=document.createElement('a');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.href=url;a.download='asah_rebleeding_measurement_instrument_database.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),0);
+  const a=document.createElement('a');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.href=url;a.download='asah_measurement_instrument_database.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),0);
 };
+
 
 // Print a selected comparison view, or a complete instrument record without the
 // scroll constraints of its interactive modal. The existing CSVs are unchanged.
@@ -1097,7 +1291,7 @@ function prepareInstrumentPrint(){
     const span=document.createElement('span');
     span.className=badge.className.replace('badge-rationale','').trim();
     span.setAttribute('style',badge.getAttribute('style') || '');
-    span.textContent=badge.cloneNode(true).textContent.replace("ⓘ","").trim();
+    span.textContent=badge.textContent.trim();
     badge.replaceWith(span);
     if(rationale){
       const explanation=document.createElement('div');
@@ -1128,7 +1322,8 @@ function cleanUpPrint(){
 }
 
 function preparePrintView(){
-  document.getElementById('printViewTitle').textContent=`Rebleeding — ${{'overview':'Instrument Overview','domain-match':'Domain Match','feasibility':'Feasibility'}[activeView]}`;
+  const titles={standard:'Overview',heatmap:'Domain Match',feasibility:'Feasibility'};
+  document.getElementById('printViewTitle').textContent=`Rebleeding — ${titles[currentView] || titles.standard}`;
   document.getElementById('printViewCount').textContent=`${filteredRows().length} instruments shown`;
   const activeFilters=[];
   const term=document.getElementById('search').value.trim();
@@ -1182,7 +1377,6 @@ async function init(){
     badgeStyles=badgeData.records;
     fields=fields.filter(f=>instrumentHeaders.includes(f.field));
     buildInterface(); render();
-    setActiveView(new URL(window.location.href).searchParams.get('view'),{updateUrl:false});
 
     const requestedId=new URL(window.location.href).searchParams.get('instrument');
     if(requestedId && instruments.some(record=>(record.id || '')===requestedId)){ openRecord(requestedId,{fromUrl:true}); }
